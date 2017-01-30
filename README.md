@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/meanjs/mean?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -234,3 +235,6 @@ The MEAN name was coined by [Valeri Karpov](http://blog.mongodb.org/post/4926286
 =======
 # capstone
 >>>>>>> dfb22ae1156a560c6d5e01a3149e175df99573f4
+=======
+# capstone
+>>>>>>> 2532111d7ad371a4ed8e3dba1e7d494098117cbd
