@@ -4,25 +4,34 @@
 <body>
 
 <!-- Topics randomizer -->
-<div ng-app="topics" ng-controller="heading" ng-init="prompted=false;">
+<div ng-app="topics" ng-controller="heading">
   <p>
     Display test:
-    <span ng-show="prompted"> {{prompt}} </span>
-    This does not work :(.
-  </p>
+    <button ng-hide="prompt.viewable" ng-click="showPrompt()">Show prompt</button>
+    <button ng-show="prompt.viewable" ng-click="changePrompt()">Change prompt</button>
 
-  <!-- TODO: Make work -->
-  <button ng-click="randomize()">Change Topic</button>
+    <span ng-show="prompt.viewable">
+      {{prompt.message}}
+    </span>
+  </p>
 </div>
 
 <script>
   var app = angular.module("topics", []);
 
   app.controller("heading", function($scope){
-    $scope.prompt = "Just talk!";
-    $scope.randomize() = {
-      //TODO: Make random
-      $scope.prompt = "New prompt.";
+    $scope.prompt = {
+      message: "Just talk!",
+      viewable: false
+    };
+
+    $scope.showPrompt = function(){
+      $scope.prompt.viewable = true;
+    };
+
+    $scope.changePrompt = function(){
+      //TODO: change prompt
+      $scope.prompt.message = "New Message.";
     };
   });
 </script>
