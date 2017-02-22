@@ -4,12 +4,13 @@
 <body>
 
 <!-- Topics randomizer -->
-<div ng-app="topics" ng-controller="heading">
+<div ng-app="topics" ng-controller="heading" ng-init="prompted=false;">
   <p>
-    Display test: {{ prompt}}
+    Display test:
+    <span ng-show="prompted"> {{prompt}} </span>
     This does not work :(.
   </p>
-  
+
   <!-- TODO: Make work -->
   <button ng-click="randomize()">Change Topic</button>
 </div>
