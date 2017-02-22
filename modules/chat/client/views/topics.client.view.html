@@ -5,15 +5,15 @@
 
 <!-- Topics randomizer -->
 <div ng-app="topics" ng-controller="heading">
-  <p>
-    Display test:
+  <p class="chat-prompt">
     <button ng-hide="prompt.viewable" ng-click="showPrompt()">Show prompt</button>
-    <button ng-show="prompt.viewable" ng-click="changePrompt()">Change prompt</button>
 
     <span ng-show="prompt.viewable">
       {{prompt.message}}
     </span>
   </p>
+
+  <button ng-show="prompt.viewable" ng-click="changePrompt()">Change prompt</button>
 </div>
 
 <script>
@@ -27,10 +27,12 @@
 
     $scope.showPrompt = function(){
       $scope.prompt.viewable = true;
+
+      //TODO: make message from database
     };
 
     $scope.changePrompt = function(){
-      //TODO: change prompt
+      //TODO: change prompt from database
       $scope.prompt.message = "New Message.";
     };
   });
