@@ -21,19 +21,98 @@
 
   app.controller("heading", function($scope){
     $scope.prompt = {
+      messages: [],
+      seen: [],
       message: "Just talk!",
-      viewable: false
+      viewable: false,
+      topic: ""
     };
 
     $scope.showPrompt = function(){
       $scope.prompt.viewable = true;
 
-      //TODO: make message from database
+      //TODO: make functional rather than sudocode
+      // //TODO: make message from database
+      //
+      // //TODO: takes in/finds interests of both parties
+      // $interests = [];
+      // //push common interests
+      //
+      // //TODO:pick random topic from interests
+      // $length = $interests.length;
+      // $randomNum = Math.floor(Math.Random() * $length+1);
+      // $scope.prompt.topic = $interests[$randomNum];
+      //
+      // //find random prompts
+      // $currentTopic = getTopic($scope.prompt.topic);
+      //
+      // //if contains subtopics
+      // if($currentTopic.hasProperty(subtopics)){
+      //   $subtopics = $currentTopic.subtopics;
+      //   for (var i = 0; i < $subtopics.length; i++) {
+      //     $array = $subtopics[i].prompts;
+      //
+      //     for (var j = 0; j < $array.length; j++) {
+      //       $scope.messages.push($subtopics[i].name+": "+$array[i]);
+      //     }
+      //   }
+      // }
+      //
+      // //has prompts without suptopics
+      // if($currentTopic.hasProperty(prompts)){
+      //   $array = $currentTopic.prompts;
+      //   for (var j = 0; j < $array.length; j++) {
+      //     $scope.messages.push($array[i]);
+      //   }
+      // }
+      //
+      // //choosing random prompt from prompts
+      // $length = $scope.messages.length;
+      // $randomNum = Math.floor(Math.Random() * $length+1);
+      // $scope.prompt.message = $interests[$randomNum];
+
+      //updating seen messages
+      $scope.prompt.seen.push($scope.prompt.message);
     };
 
     $scope.changePrompt = function(){
       //TODO: change prompt from database
       $scope.prompt.message = "New Message.";
+
+      // //TODO:pick random prompt from chosen topic
+      // $currentTopic = getTopic($scope.prompt.topic);
+      //
+      // //if contains subtopics
+      // if($currentTopic.hasProperty(subtopics)){
+      //   $subtopics = $currentTopic.subtopics;
+      //   for (var i = 0; i < $subtopics.length; i++) {
+      //     $array = $subtopics[i].prompts;
+      //
+      //     for (var j = 0; j < $array.length; j++) {
+      //       $scope.messages.push($subtopics[i].name+": "+$array[i]);
+      //     }
+      //   }
+      // }
+      //
+      // //has prompts without suptopics
+      // if($currentTopic.hasProperty(prompts)){
+      //   $array = $currentTopic.prompts;
+      //   for (var j = 0; j < $array.length; j++) {
+      //     $scope.messages.push($array[i]);
+      //   }
+      // }
+      //
+      // //TODO: fix removing seen topics
+      // for (var i = 0; i < $scope.prompt.seen.length; i++) {
+      //   $scope.messages.remove($scope.prompt.seen[i]);
+      // }
+      //
+      // $length = $scope.messages.length;
+      // $randomNum = Math.floor(Math.Random() * $length+1);
+      // $scope.prompt.message = $interests[$randomNum];
+
+      //updating seen messages
+      $scope.prompt.seen.push($scope.prompt.message);
     };
   });
 </script>
