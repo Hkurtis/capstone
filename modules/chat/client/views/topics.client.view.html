@@ -4,116 +4,97 @@
 <body>
 
 <!-- Topics randomizer -->
-<div ng-app="topics" ng-controller="heading">
-  <p class="chat-prompt">
-    <button ng-hide="prompt.viewable" ng-click="showPrompt()">Show prompt</button>
-
-    <span ng-show="prompt.viewable">
-      {{prompt.message}}
-    </span>
+<div ng-app="topics" ng-controller="heading as prompt">
+  <h2>Talk about:</h2>
+  <h4>
+    {{prompt.info.topic}}:
+  </h4>
+  <p>
+    {{prompt.info.text}}
   </p>
-
-  <button ng-show="prompt.viewable" ng-click="changePrompt()">Change prompt</button>
+  <button ng-click="prompt.randomize()">New Prompt</button>
 </div>
 
 <script>
+
   var app = angular.module("topics", []);
 
-  app.controller("heading", function($scope){
-    $scope.prompt = {
-      messages: [],
-      seen: [],
-      message: "Just talk!",
-      viewable: false,
-      topic: ""
+  app.controller("heading", function(){
+    this.info = {
+      topic: "Whatever!",
+      subtopic: "",
+      text: "",
+      previousPrompts: []
     };
 
-    $scope.showPrompt = function(){
-      $scope.prompt.viewable = true;
+    //randomizes current prompt
+    this.randomize = function(){
+      $newTopic = "";
+      $newText = "";
+      $newSub = "";
 
-      //TODO: make functional rather than sudocode
-      // //TODO: make message from database
-      //
-      // //TODO: takes in/finds interests of both parties
-      // $interests = [];
-      // //push common interests
-      //
-      // //TODO:pick random topic from interests
-      // $length = $interests.length;
-      // $randomNum = Math.floor(Math.Random() * $length+1);
-      // $scope.prompt.topic = $interests[$randomNum];
-      //
-      // //find random prompts
-      // $currentTopic = getTopic($scope.prompt.topic);
-      //
-      // //if contains subtopics
-      // if($currentTopic.hasProperty(subtopics)){
-      //   $subtopics = $currentTopic.subtopics;
-      //   for (var i = 0; i < $subtopics.length; i++) {
-      //     $array = $subtopics[i].prompts;
-      //
-      //     for (var j = 0; j < $array.length; j++) {
-      //       $scope.messages.push($subtopics[i].name+": "+$array[i]);
-      //     }
-      //   }
-      // }
-      //
-      // //has prompts without suptopics
-      // if($currentTopic.hasProperty(prompts)){
-      //   $array = $currentTopic.prompts;
-      //   for (var j = 0; j < $array.length; j++) {
-      //     $scope.messages.push($array[i]);
-      //   }
-      // }
-      //
-      // //choosing random prompt from prompts
-      // $length = $scope.messages.length;
-      // $randomNum = Math.floor(Math.Random() * $length+1);
-      // $scope.prompt.message = $interests[$randomNum];
+      if (this.info.topic === "Whatever!") {
+        $newTopic = this.chooseTopic();
+      }
+      else {
+        $newTopic = this.info.topic;
+      }
+      $newSub = this.chooseSubtopic($newTopic);
+      $newText = this.getPrompt();
 
-      //updating seen messages
-      $scope.prompt.seen.push($scope.prompt.message);
+      $newInfo = {
+        topic: $newTopic,
+        subtopic: $newSub,
+        text: $newText,
+        previousPrompts: this.info.previousPrompts.push(this.info.text);
+      };
     };
 
-    $scope.changePrompt = function(){
-      //TODO: change prompt from database
-      $scope.prompt.message = "New Message.";
-
-      // //TODO:pick random prompt from chosen topic
-      // $currentTopic = getTopic($scope.prompt.topic);
-      //
-      // //if contains subtopics
-      // if($currentTopic.hasProperty(subtopics)){
-      //   $subtopics = $currentTopic.subtopics;
-      //   for (var i = 0; i < $subtopics.length; i++) {
-      //     $array = $subtopics[i].prompts;
-      //
-      //     for (var j = 0; j < $array.length; j++) {
-      //       $scope.messages.push($subtopics[i].name+": "+$array[i]);
-      //     }
-      //   }
-      // }
-      //
-      // //has prompts without suptopics
-      // if($currentTopic.hasProperty(prompts)){
-      //   $array = $currentTopic.prompts;
-      //   for (var j = 0; j < $array.length; j++) {
-      //     $scope.messages.push($array[i]);
-      //   }
-      // }
-      //
-      // //TODO: fix removing seen topics
-      // for (var i = 0; i < $scope.prompt.seen.length; i++) {
-      //   $scope.messages.remove($scope.prompt.seen[i]);
-      // }
-      //
-      // $length = $scope.messages.length;
-      // $randomNum = Math.floor(Math.Random() * $length+1);
-      // $scope.prompt.message = $interests[$randomNum];
-
-      //updating seen messages
-      $scope.prompt.seen.push($scope.prompt.message);
+    //chooses a topic from mutual interests
+    this.chooseTopic = function(){
+      //TODO: Make work
+      return "Whatever!";
     };
+
+    //chooses a random subtopic from current topic
+    this.chooseSubtopic = function($topic){
+      //TODO: Make work
+      if ($topic === "Whatever!") {
+        return "";
+      }
+
+      //if topic has no subtopics
+
+      //otherwise pic subtopic
+
+      return "";
+    };
+
+    //gets new random text for prompt
+    this.getPrompt = function($topic, $subtopic){
+      $prompts = this.getPrompts($topic, $subtopic);
+
+      if ($prompts.length == 0) {
+        $prompt = "No prompts found.";
+      }
+      else{
+        $prompt = prompts[Math.floor(Math.random()*prompts.length)];
+      }
+
+      //redo if choose invalid
+      if (this.info.previousPrompts.includes($prompt)) {
+        // return this.getPrompt($topic, $subtopic);
+      }
+
+      return $prompt;
+    };
+
+    //pulls list of prompts from database given topic and subtopic
+    this.getPrompts = function(){
+      //TODO: make work
+      return ["Sample text."];
+    };
+
   });
 </script>
 
