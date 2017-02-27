@@ -37,13 +37,14 @@
         Socket.removeListener('chatMessage');
       });
     }
-
+    socket.emit('join',room);
     // Create a controller method for sending messages
     function sendMessage() {
       // Create a new message object
       var message = {
         text: vm.messageText
       };
+
       // message.save(function(err,mssg){
       //   io.in(mssg.room).emit('message created',mssg);
       // });

@@ -106,17 +106,15 @@ module.exports = function (app, db) {
     });
   });
 
-  
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
-    // new code beloq this line 
+    // new code below this line 
     var rooms = ['room1', 'room2'];
     var users = { };
     // sets up the rooms
     socket.emit('setup',{
       room: rooms
     });
-    // added code below this line
     socket.on('adduser', function(username) {
       socket.room = 'room1';// sets the room to room1 aka default room
       socket.username = username;// sets username
@@ -134,6 +132,7 @@ module.exports = function (app, db) {
     });
 
     // added code above this line
+
     config.files.server.sockets.forEach(function (socketConfiguration) {
       require(path.resolve(socketConfiguration))(io, socket);
     });
