@@ -108,7 +108,7 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
-    // new code below this line 
+    // new code below this line
     var rooms = ['room1', 'room2'];
     var users = { };
     // sets up the rooms
@@ -124,7 +124,7 @@ module.exports = function (app, db) {
       socket.emit('updaterooms', rooms, 'room1');
     });
     // function for switching rooms
-    socket.on('switch room', function(data) {
+    socket.on('switchroom', function(data) {
       socket.leave(data.oldRoom);// leave the old room
       socket.join(data.newRoom);
       io.in(data.oldRoom).emit('user left', data);
