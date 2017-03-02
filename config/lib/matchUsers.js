@@ -23,7 +23,7 @@ socket.on('matchUsers', function(roomUsers, room){
     if ((roomUsers.length-i)/2 >0){//if there are at least two users in room
 
       //create new room for two people
-      var newRoom = room+""+io.rooms.length;
+      var newRoom = room+''+io.rooms.length;
       socket.create(newRoom);
 
       //switch people into new rooms
