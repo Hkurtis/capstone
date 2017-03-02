@@ -1,4 +1,6 @@
 socket.on('catalogueusers', function(room){
+  //takes in a string identifying the room to parse
+
   //array of users belonging to room
   var roomUsers = [];
 
@@ -11,10 +13,12 @@ socket.on('catalogueusers', function(room){
   }
 
   //match users from room
-  matchUsers(roomUsers, room);
+  socket.emit('matchUsers', roomUsers, room);
 });
 
 socket.on('matchUsers', function(roomUsers, room){
+  //takes in a set of sockets rep users in room and a string rep room
+
   for (var i = 0; i < roomUsers.length; i+=2) {
     if ((roomUsers.length-i)/2 >0){//if there are at least two users in room
 
