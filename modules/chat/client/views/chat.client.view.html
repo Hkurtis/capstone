@@ -1,7 +1,197 @@
 <!-- The chat view -->
 <section class="container">
   <div class="page-header">
-    <h1>Topic: </h1>
+    <h1>
+      <script language="JavaScript">
+    var topics=['Politics', 'Books', 'Movies', 'TV', 'Anime/Manga', 'Comics', 'Food', 'Video Games',
+                'Games', 'Music', 'Travel', 'Sports', 'Science & Technology', 'Fashion',
+                'Hobbies', 'Art', 'Current Events', 'Philosophical Questions', 'Animals/Pets',
+                'Comedy', 'History', 'Weather']
+
+
+    //Generate random  number
+    var rand=Math.floor(Math.random()*topics.length)
+    if (rand==0)
+      rand=1
+
+    var title = topics[rand]
+    document.write('<h1><center>' + 'Topic: ' + title + '</center></h1>');
+    </script>
+    </h1>
+    <h2>
+      <script language="JavaScript">
+      var politics_ques = ['What are your opinions on Republicans?', 'What are your opinions on Democrats?', 'Do you think we are getting too close to Russia?', 'What is your opinion on Sean Spicer throwing out news outlets from the White House?']
+      var books_ques = ['What is one of your favorite books?', 'What is the most accessible genre of books?', 'Do you prefer fiction or nonfiction books?', 'What type of book makes for a good TV show or movie?', 'Do you have a favorite author?']
+      var movies_ques = ['What is one of your favorite movies?', 'Are blockbuster movies ruining cinema?']
+      var tv_ques = ['What is one of your favorite TV shows?', 'Are there too many TV shows right now?']
+      var anime_ques = ['What is one of your favorite animes/mangas?', 'How accurate should an anime be to a manga?']
+      var comics_ques = ['Who is one of your favorite superheroes?', 'What comic series deserves a movie/TV show?', 'Should Superman kill if the situation calls for it?', 'What is an underrated comics series?']
+      var food_ques = ['What food do you always have on your birthday?', 'What food do you really dislike?', 'Is eating other culture\'s food cultural appropriation?']
+      var video_ques = ['What video game console do you play on?', 'Are phone games video games?']
+      var games_ques = ['Do you prefer card games or board games?', 'Do you like to play strategy games?', 'Do you like games with teams or everyone for themselves?']
+      var music_ques = ['What is your favorite genre of music?', 'Are there any genres of music you can\'t stand to listen to?', 'What is your favorite album?', "Who is your favorite artist?"]
+      var travel_ques = ['Where do you want to travel?', 'Would you travel to Antartica?', 'What is yuor preferred form of travel?']
+      var sports_ques = ['Did you watch the Superbowl?', 'What is your favorite Olympic sport to watch?', 'Do you prefer the summer or winter Olympics?', 'Do you follow any sports leagues?', 'Do you play fantasy sports?', 'Have you ever bet on sports?']
+      var science_ques = ['Should GMOs be labeled on food?', 'Do you use Siri?', 'Do you prefer a laptop or a desktop?']
+      var fashion_ques = ['How much time do you spend on deciding your outfit?', 'How many pairs of shoes do you own?', 'Do you like to thrift shop?']
+      var hobbies_ques = ['What are some of your hobbies?', 'Do you think video games count as a hobby?', 'How many hobbies should a person have?']
+      var art_ques = ['What doesn\'t count as art?', 'Do you consider yourself an artist?', 'What style of art do you prefer?']
+      var news_ques = ['Do you follow the news?', 'What is your opinion on the Trump administration?']
+      var philo_ques = ['Why do some people believe in religion and others don\'t?', 'Do you believe that alien life exists?', 'What is an emotion?', 'What is the meaning of life?', 'Does free will exist?', 'Why do we punish people?', 'Can wars ever be justified?', 'Why do we dream?', 'Is life meaningless if we can live forever?', 'If we live in a computer simulation, does it make a difference to the meaning of life?', 'What is time?']
+      var animals_ques = ['What pets have you owned?', 'What is your favorite animal?', '']
+      var comedy_ques = ['Do you have a favorite comedian?', 'When does a joke go too far?']
+      var history_ques = ['What historical time period would you like to visit?', 'How would history have progressed if the black plague had killed most of Europe?']
+      var weather_ques = ['Do you like rain?', 'What is your favorite season?', 'What do you do on a snow day?', 'Do you prefer hot or cold weather?']
+
+
+
+
+
+        if(title==topics[0]) {
+          var rand=Math.floor(Math.random()*politics_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = politics_ques[rand]
+
+        } else if(title==topics[1]) {
+          var rand=Math.floor(Math.random()*books_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = books_ques[rand]
+        } else if (title==topics[2]) {
+          var rand=Math.floor(Math.random()*movies_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = movies_ques[rand]
+        } else if (title==topics[3]) {
+          var rand=Math.floor(Math.random()*tv_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = tv_ques[rand]
+        } else if (title==topics[4]) {
+          var rand=Math.floor(Math.random()*anime_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = anime_ques[rand]
+        } else if (title==topics[5]) {
+          var rand=Math.floor(Math.random()*comics_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = comics_ques[rand]
+        } else if (title==topics[6]) {
+          var rand=Math.floor(Math.random()*food_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = food_ques[rand]
+        } else if (title==topics[7]) {
+          var rand=Math.floor(Math.random()*video_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = video_ques[rand]
+        } else if (title==topics[8]) {
+          var rand=Math.floor(Math.random()*games_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = games_ques[rand]
+        } else if (title==topics[9]) {
+          var rand=Math.floor(Math.random()*music_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = music_ques[rand]
+        } else if (title==topics[10]) {
+          var rand=Math.floor(Math.random()*travel_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = travel_ques[rand]
+        } else if (title==topics[11]) {
+          var rand=Math.floor(Math.random()*sports_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = sports_ques[rand]
+        } else if (title==topics[12]) {
+          var rand=Math.floor(Math.random()*science_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = science_ques[rand]
+        } else if (title==topics[13]) {
+          var rand=Math.floor(Math.random()*fashion_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = fashion_ques[rand]
+        } else if (title==topics[14]) {
+          var rand=Math.floor(Math.random()*hobbies_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = hobbies_ques[rand]
+        } else if (title==topics[15]) {
+          var rand=Math.floor(Math.random()*art_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = art_ques[rand]
+        } else if (title==topics[16]) {
+          var rand=Math.floor(Math.random()*news_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = news_ques[rand]
+        } else if (title==topics[17]) {
+          var rand=Math.floor(Math.random()*philo_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = philo_ques[rand]
+        } else if (title==topics[18]) {
+          var rand=Math.floor(Math.random()*animals_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = animals_ques[rand]
+        } else if (title==topics[19]) {
+          var rand=Math.floor(Math.random()*comedy_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = comedy_ques[rand]
+        }  else if (title==topics[20]) {
+          var rand=Math.floor(Math.random()*history_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = history_ques[rand]
+        } else {
+          var rand=Math.floor(Math.random()*weather_ques.length)
+          if (rand==0)
+            rand=1
+
+          var question = weather_ques[rand]
+        }
+
+          document.write('<h3><center>' + question + '</center></h3>');
+
+
+
+
+
+
+
+    </script>
+    </h2>
   </div>
   <!-- The message form -->
   <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
@@ -16,6 +206,40 @@
   </form>
   <ul class="list-unstyled">
     <!-- List all messages -->
+    <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
+      <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
+      <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
+      <div class="pull-left chat-message-details">
+        <strong ng-bind="message.username"></strong>
+        <br>
+        <span ng-bind="message.text"></span>
+      </div>
+    </li>
+  </ul>
+
+
+
+</section>
+
+
+<!-- //The chat view 
+<section class="container">
+  <div class="page-header">
+    <h1>Topic: </h1>
+  </div>
+  <!The message form -
+  <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
+    <fieldset class="row">
+      <div class="input-group">
+        <input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText" placeholder="Enter new message" autofocus>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>
+        </span>
+      </div>
+    </fieldset>
+  </form>
+  <ul class="list-unstyled">
+    <! List all messages 
     <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
       <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
       <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
