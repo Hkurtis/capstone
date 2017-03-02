@@ -112,9 +112,10 @@ module.exports = function (app, db) {
     var rooms = ['room1', 'room2'];
     var users = { };
     // sets up the rooms
-    socket.emit('setup',{
+    socket.emit('setup', {
       room: rooms
     });
+    // this is the add user function, it adds users to a specific room based on their username 
     socket.on('adduser', function(username) {
       socket.room = 'room1';// sets the room to room1 aka default room
       socket.username = username;// sets username
@@ -123,6 +124,7 @@ module.exports = function (app, db) {
       socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
       socket.emit('updaterooms', rooms, 'room1');
     });
+
     // function for switching rooms
     socket.on('switchroom', function(data) {
       socket.leave(data.oldRoom);// leave the old room
@@ -131,6 +133,32 @@ module.exports = function (app, db) {
       io.in(data.newRoom).emit('user joined', data);
     });
 
+    // this function is designed for the creation of new rooms
+    // room being the name of the specific room
+    socket.on('create',function(room){
+      socket.join(room);
+    });
+
+    // create the schema for things to be sacved to the database
+    var msgSchema = mongoose.Schema({
+      msg: String,
+      created: {type: Date, default: Date.now}
+    });
+
+    var Chat = mongoose.model('Message',msgSchema);// makes the object for the chat messages to be saved
+    // this function is designed to save messages to the database
+    socket.on('sendMsg', function(data){//data is the message being sent by the user
+      var newMsg = new Chat({msg: '', + data});
+      console.log('saving msg' + newMsg);// logs the message
+      newMsg.save(function(err){
+        console.log('saved, err = ' + err);
+        if(err){// if there is an error throw it
+          throw err;
+        }
+        console.log('echoing back data: ' + data);// else log the data
+        io.sockets.emit('new message', data);// then emit the message data
+      });
+    });
     // added code above this line
 
     config.files.server.sockets.forEach(function (socketConfiguration) {
