@@ -4,7 +4,7 @@
   <h2><center>Consent Form</center></h2>
 </head>
 <body>
-  <form action="/action_page.php" method="get" onsubmit="return checkCheckBoxes(this);">
+  <form action="../php/consent.view.php" method="post">
   <h4>I. Purpose</h4>
   <p>The purpose of this research is to assemble a large data set of conversations between
     human beings that will be made publicly accessible to researchers in the field of artificial
@@ -12,7 +12,7 @@
     humans using a human language (e.g. English). You have been asked to participate
     because you are a human being capable of having a conversation, and you have a Puget
     Sound email address.</p>
-    <input type="checkbox" name="SECTION_1" value="accept"> I read and understood this section<br>
+    <input type="checkbox" name="SECTION_1" value="accept" required/> I read and understood this section<br>
   <h4>II. Participation in the Study</h4>
   <p><b>Your Interests</b></p>
   <p>After this consent page, you will be asked about your general interests (e.g. tv shows,
@@ -73,7 +73,7 @@
       set”. After answering “no” 3 times, you will be blocked from further participation. You
       will still be paid for all conversations you participated in up to that time.
   </p>
-  <input type="checkbox" name="SECTION_2" value="accept"> I read and understood this section<br>
+  <input type="checkbox" name="SECTION_2" value="accept" required/> I read and understood this section<br>
   <h4><u>III. Confidentiality of Data</u></h4>
   <p>Your email address and account information will be stored on secure remote Amazon
     servers using up-to-date encryption and security measures.</p>
@@ -99,7 +99,7 @@
   <p>The final data set of conversations will be submitted to the University of California,
     Irvine’s Machine Learning Repository of data sets. After submission, all information
     collected from this study will be permanently deleted.</p>
-    <input type="checkbox" name="SECTION_3" value="accept"> I read and understood this section<br>
+    <input type="checkbox" name="SECTION_3" value="accept" required/> I read and understood this section<br>
   <h4>IV. Risks and Benefits</h4>
   <p><b>Risks:</b></p>
   <p>Despite all our efforts, the following risks are possible (1) sensitive or identifying
@@ -145,7 +145,7 @@
     videogames, virtual guides (e.g. for museums), or more realistic automated personal
     assistants (similar to J.A.R.V.I.S. the artificially intelligent personal assistant in Iron
     Man).</p>
-    <input type="checkbox" name="SECTION_4" value="accept"> I read and understood this section<br>
+    <input type="checkbox" name="SECTION_4" value="accept" required/> I read and understood this section<br>
   <h4>V. Contact Information</h4>
   <p><b>Investigators</b></p>
   <p>Liana Bardallis<br>lbardallis@pugetsound.edu</p>
@@ -184,36 +184,10 @@ Office of the Associate Deans (253-879-3207). A copy of this consent form will a
 be accessible from the “About” page. My initials below mean that I have freely agreed to
 participate in this experimental study.</p>
 Date:<br>
-<input type="text" name="DATE"><br>
+<input type="text" name="DATE"/><br>
 Type Initials:<br>
-<input type="text" name="TYPE_INITIALS"><br><br>
-
-<script type="text/javascript" language="JavaScript">
-<!--
-function checkCheckBoxes(theForm) {
-if (
-theForm.SECTION_1.checked == false &&
-theForm.SECTION_2.checked == false &&
-theForm.SECTION_3.checked == false &&
-theForm.SECTION_4.checked == false &&
-theForm.getElementsByTagName('DATE').hasAttribute == "" &&
-theForm.getElementsByTagName('TYPE_INITIALS').hasAttribute == "")
-{
-  alert ('You didn\'t fill out the entire form!');
-  return false;
-} else {
-  return true;
-}
-}
-//-->
-</script>
-  <input type="submit" value="Submit" onclick="return check();">
-  <script>
-function check()
-        {
-            window.location.href = 'interests.view.html';
-        }
-</script>
+<input type="text" name="TYPE_INITIALS" required/><br><br>
+<input type="submit"/>
   </form>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 // socket.on('catalogueusers', function(room){
 //   //array of users belonging to room
 //   var roomUsers = [];
@@ -34,3 +35,4 @@
 //     }
 //   }
 // });
+
