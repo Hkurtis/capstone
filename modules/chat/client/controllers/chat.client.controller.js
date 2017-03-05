@@ -37,7 +37,11 @@
         Socket.removeListener('chatMessage');
       });
     }
-
+    // eventually this will save messages to the database
+    // var msgSchema = new mongoose.Schema({
+    //   msg: String,
+    //   name: String
+    // });
     // Create a controller method for sending messages
     function sendMessage() {
       // Create a new message object
@@ -52,5 +56,15 @@
       vm.messageText = '';
     }
   }
+  // // function to save things?
+  // var mongoose = require('mongoose');
+  // mongoose.connect('mongodb://localhost/test',function (err){
+  //   if(err){
+  //     console.log(err);
+  //   }else{
+  //     console.log("Connected to mongodb");
+  //   }
+
+  // });
 }());
 

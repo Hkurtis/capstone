@@ -108,6 +108,7 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
+    //console.log(socket.id+'connected');
     // new code below this line
     var rooms = ['room1', 'room2'];
     var users = { };
@@ -115,8 +116,23 @@ module.exports = function (app, db) {
     socket.emit('setup', {
       room: rooms
     });
-    // this is the add user function, it adds users to a specific room based on their username 
-    socket.on('adduser', function(username) {
+
+    // this function connects people to a room based on an interest
+    // data is an interest, nsp would be the namespace
+    socket.on('interestRoom', function interestRoom(data){
+      var nsp = io.of('/' + data);
+    });
+
+    // this function is for messaging specific interest rooms
+    socket.on('interestmsg', function interestMsg(data){
+      var msg = data.msg;
+      var nsp = data.nsp;
+      io.of(nsp).emit('message',msg);
+    });
+    
+
+    // this is the add user function, it adds users to a specific room based on their username
+    socket.on('adduser', function addUser (username) {
       socket.room = 'room1';// sets the room to room1 aka default room
       socket.username = username;// sets username
       socket.join('room1');// lets user join room1
@@ -126,7 +142,7 @@ module.exports = function (app, db) {
     });
 
     // function for switching rooms
-    socket.on('switchroom', function(data) {
+    socket.on('switchroom', function switchRoom (data) {
       socket.leave(data.oldRoom);// leave the old room
       socket.join(data.newRoom);
       io.in(data.oldRoom).emit('user left', data);
@@ -135,30 +151,68 @@ module.exports = function (app, db) {
 
     // this function is designed for the creation of new rooms
     // room being the name of the specific room
-    socket.on('create',function(room){
+    socket.on('create', function(room) {
       socket.join(room);
     });
 
-    // create the schema for things to be sacved to the database
-    var msgSchema = mongoose.Schema({
-      msg: String,
-      created: {type: Date, default: Date.now}
-    });
+    // // create the schema for things to be sacved to the database
+    // var msgSchema = mongoose.Schema({
+    //   msg: String,
+    //   created: {type: Date, default: Date.now}
+    // });
 
-    var Chat = mongoose.model('Message',msgSchema);// makes the object for the chat messages to be saved
-    // this function is designed to save messages to the database
-    socket.on('sendMsg', function(data){//data is the message being sent by the user
-      var newMsg = new Chat({msg: '', + data});
-      console.log('saving msg' + newMsg);// logs the message
-      newMsg.save(function(err){
-        console.log('saved, err = ' + err);
-        if(err){// if there is an error throw it
-          throw err;
-        }
-        console.log('echoing back data: ' + data);// else log the data
-        io.sockets.emit('new message', data);// then emit the message data
-      });
-    });
+    // // below is the code associated to saving chat messages
+    // var Chat = mongoose.model('Message',msgSchema);// makes the object for the chat messages to be saved
+    // // this function is designed to save messages to the database
+    // socket.on('sendMsg', function(data){//data is the message being sent by the user
+    //   var newMsg = new Chat({msg: '', + data});
+    //   console.log('saving msg' + newMsg);// logs the message
+    //   newMsg.save(function(err){
+    //     console.log('saved, err = ' + err);
+    //     if(err){// if there is an error throw it
+    //       throw err;
+    //     }
+    //     console.log('echoing back data: ' + data);// else log the data
+    //     io.sockets.emit('new message', data);// then emit the message data
+    //   });
+    // });
+
+  socket.on('catalogueusers', function(room){
+  //array of users belonging to room
+  var roomUsers = [];
+
+  //form list of users in room
+  for (var i = 0; i < io.users.length; i++) {
+    var user = io.users[i];
+    if (user.room === room) {
+      roomUsers.push(user);
+    }
+  }
+    //match users from room
+   matchUsers(roomUsers, room);
+});
+
+    // creates a new room if there are more than two users in a given room
+    socket.on('matchUsers', function(roomUsers, room){
+      for (var i = 0; i < roomUsers.length; i+=2) {
+        if ((roomUsers.length-i)/2 >0){// if there are at least two users in room
+
+      // create new room for two people
+      var newRoom = room+''+io.rooms.length;
+      socket.create(newRoom);
+
+      // switch people into new rooms
+      var data = {
+        newRoom: newRoom,
+        oldRoom: room
+      };
+      roomUsers[i].emit('switchroom', data);
+      // roomUsers[i].emit('updaterooms', rooms, newRoom);
+      roomUsers[1+i].emit('switchroom', data);
+      // roomUsers[1+i]emit('updaterooms', rooms, newRoom);
+    }
+  }
+});
     // added code above this line
 
     config.files.server.sockets.forEach(function (socketConfiguration) {
