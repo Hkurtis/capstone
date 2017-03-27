@@ -135,7 +135,52 @@ module.exports = function (app, db) {
       queue.push(socket);
     }
   };
-  // end of code added by hunter
+
+  // here is the rough algorithm to enqueue everyone
+  var nonInterestedQ = [];// general queue for people with no interests
+  var interests = [];// populate with interests
+  var q = [];
+  var tmp = [];// tmp queue 
+  var maxUsers = 250;
+  var created = false;
+  var queueScheduler = function(socket, interest){
+    // if there is no interests 
+    if(interest == null){// if there is no interests
+      nonInterestedQ.push(socket);// add user to generic queue
+    }
+    if(created == false){
+      for(i = 0; i < maxUsers; i++ ){// create all queues only once
+         q = interest[i];// create a queue for every interest;
+      }
+    }
+        created = true;
+        for(i = 0; i < interests.length(); i++){
+          tmp = interests[i];
+          for (j = 0; j < tmp.length();j++){// check each spot in the given queue 
+            if(tmp[j] != socket.id){// if the user is not within the queue at the given queue;
+              interests[i].push(socket); //add them to the queue 
+            }
+          }
+          tmp = [];// reset tmp
+      }
+  }
+  var tmp = [];
+  var queue = [];
+  // function to remove users from all queues they are a part of
+  // addition to the queue scheduler function 
+  var removeFromQueues = function(socket){
+    queue = interests;
+    // check every queue to see if the socket is present 
+    for(i = 0; i < interests.length(); i++){
+      tmp = queue[i];
+      for(j = 0; j < tmp.length(); j++){
+        if(tmp[j] == socket.id){
+          tmp.pop(socket.id);
+        }
+      }
+      tmp = [];
+    }
+  }
 
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
@@ -184,7 +229,7 @@ module.exports = function (app, db) {
       // only add the other user to the queue as the socket itself disconnects
       pairLoneUsers(allUsers[otherID]);
     });
-
+    // end of code added by hunter
 
     // testing new code so Hunter commented out everything below to figure out another solution to the pairing issue
     // new code below this line
