@@ -79,6 +79,15 @@
           ignoreState: true,
           pageTitle: 'Forbidden'
         }
+      })
+    .state('resources', {
+        url: '/resources',
+        templateUrl: '/modules/core/client/views/resources.view.html',
+        controller: 'ConsentController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Resources'
+        }
       });
   }
 }());
