@@ -32,7 +32,19 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
-      <li><a ui-sref="consent-page" >Consent</a></li>
+      <li class="dropdown" uib-dropdown>
+        <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+            About<span ng-bind="About"></span> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li ui-sref-active="active" >
+            <a ui-sref="consent-page" >Consent</a>
+          </li>
+          <li>
+            <a ui-sref="resources" >Resources</a>
+          </li>
+      </ul>
+      </li>
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
