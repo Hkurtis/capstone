@@ -65,7 +65,7 @@
       })
       .state('consent-page', {
         url: '/consent-page',
-        templateUrl: '/modules/core/client/views/consent.view.html',
+        templateUrl: '/modules/core/client/views/consent.form.view.html',
         controller: 'ConsentController',
         controllerAs: 'vm',
         date: {
