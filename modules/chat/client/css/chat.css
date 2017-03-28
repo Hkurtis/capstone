@@ -13,3 +13,7 @@
   height: 28px;
   width: 28px;
 }
+
+.chat-prompt {
+  border-radius: 50%;
+}
