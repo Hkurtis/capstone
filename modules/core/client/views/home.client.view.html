@@ -7,7 +7,9 @@
         <img alt="Dialogue" class="img-responsive text-center" src="/modules/core/client/brain_circuit_board.jpg" height = "300" width = "450"/>
       </div>
     </div>
-    <!--<h2><center><img src = "/modules/core/client/img/brand/brain.png"></center></h2>-->
+    <div id="logged_in" ng-show="vm.authentication.user">
+      <center><h1><button onclick="ui-sref='chat'">CHAT</button></h1></center>
+    </div>
   </div>
 </section>
 
