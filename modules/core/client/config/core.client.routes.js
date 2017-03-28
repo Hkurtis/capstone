@@ -63,6 +63,15 @@
           pageTitle: 'Bad Request'
         }
       })
+      .state('consent-page', {
+        url: '/consent-page',
+        templateUrl: '/modules/core/client/views/consent.view.html',
+        controller: 'ConsentController',
+        controllerAs: 'vm',
+        date: {
+          pageTitle: 'Consent Form'
+        }
+      })
       .state('forbidden', {
         url: '/forbidden',
         templateUrl: '/modules/core/client/views/403.client.view.html',
