@@ -51,21 +51,22 @@ var validateUsername = function(username) {
  * User Schema
  */
 var UserSchema = new Schema({
-  firstName: {
-    type: String,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your first name']
-  },
-  lastName: {
-    type: String,
-    trim: true,
-    default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-  },
+  // firstName: {
+  //   type: String,
+  //   trim: true,
+  //   default: '',
+  //   validate: [validateLocalStrategyProperty, 'Please fill in your first name']
+  // },
+  // lastName: {
+  //   type: String,
+  //   trim: true,
+  //   default: '',
+  //   validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+  // },
   displayName: {
     type: String,
-    trim: true
+    trim: true,
+    default: "PugetSound Student Options"
   },
   email: {
     type: String,

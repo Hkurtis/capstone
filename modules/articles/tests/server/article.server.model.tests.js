@@ -21,9 +21,9 @@ describe('Article Model Unit Tests:', function () {
 
   beforeEach(function (done) {
     user = new User({
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      //firstName: 'Full',
+      //lastName: 'Name',
+      displayName: "PugetSound Student Options",
       email: 'test@test.com',
       username: 'username',
       password: 'M3@n.jsI$Aw3$0m3'

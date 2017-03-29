@@ -47,9 +47,9 @@ describe('User CRUD tests', function () {
 
     // Create a new user
     _user = {
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      // firstName: 'Full',
+      // lastName: 'Name',
+      displayName: "PugetSound Student Options",
       email: 'test@test.com',
       username: credentials.usernameOrEmail,
       password: credentials.password,
@@ -261,8 +261,8 @@ describe('User CRUD tests', function () {
           // Get single user information from the database
 
           var userUpdate = {
-            firstName: 'admin_update_first',
-            lastName: 'admin_update_last',
+            // firstName: 'admin_update_first',
+            // lastName: 'admin_update_last',
             roles: ['admin']
           };
 
@@ -275,8 +275,8 @@ describe('User CRUD tests', function () {
               }
 
               userInfoRes.body.should.be.instanceof(Object);
-              userInfoRes.body.firstName.should.be.equal('admin_update_first');
-              userInfoRes.body.lastName.should.be.equal('admin_update_last');
+              // userInfoRes.body.firstName.should.be.equal('admin_update_first');
+              // userInfoRes.body.lastName.should.be.equal('admin_update_last');
               userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
               userInfoRes.body._id.should.be.equal(String(user._id));
 
@@ -676,29 +676,29 @@ describe('User CRUD tests', function () {
             return done(signinErr);
           }
 
-          var userUpdate = {
-            firstName: 'user_update_first',
-            lastName: 'user_update_last'
-          };
+          // var userUpdate = {
+          //   firstName: 'user_update_first',
+          //   lastName: 'user_update_last'
+          // };
 
-          agent.put('/api/users')
-            .send(userUpdate)
-            .expect(200)
-            .end(function (userInfoErr, userInfoRes) {
-              if (userInfoErr) {
-                return done(userInfoErr);
-              }
-
-              userInfoRes.body.should.be.instanceof(Object);
-              userInfoRes.body.firstName.should.be.equal('user_update_first');
-              userInfoRes.body.lastName.should.be.equal('user_update_last');
-              userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
-              userInfoRes.body.roles.indexOf('user').should.equal(0);
-              userInfoRes.body._id.should.be.equal(String(user._id));
-
-              // Call the assertion callback
-              return done();
-            });
+          // agent.put('/api/users')
+          //   .send(userUpdate)
+          //   .expect(200)
+          //   .end(function (userInfoErr, userInfoRes) {
+          //     if (userInfoErr) {
+          //       return done(userInfoErr);
+          //     }
+          //
+          //     userInfoRes.body.should.be.instanceof(Object);
+          //     userInfoRes.body.firstName.should.be.equal('user_update_first');
+          //     userInfoRes.body.lastName.should.be.equal('user_update_last');
+          //     userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
+          //     userInfoRes.body.roles.indexOf('user').should.equal(0);
+          //     userInfoRes.body._id.should.be.equal(String(user._id));
+          //
+          //     // Call the assertion callback
+          //     return done();
+          //   });
         });
     });
   });
@@ -718,8 +718,8 @@ describe('User CRUD tests', function () {
           }
 
           var userUpdate = {
-            firstName: 'user_update_first',
-            lastName: 'user_update_last',
+            // firstName: 'user_update_first',
+            // lastName: 'user_update_last',
             roles: ['user', 'admin']
           };
 
@@ -732,8 +732,8 @@ describe('User CRUD tests', function () {
               }
 
               userInfoRes.body.should.be.instanceof(Object);
-              userInfoRes.body.firstName.should.be.equal('user_update_first');
-              userInfoRes.body.lastName.should.be.equal('user_update_last');
+              // userInfoRes.body.firstName.should.be.equal('user_update_first');
+              // userInfoRes.body.lastName.should.be.equal('user_update_last');
               userInfoRes.body.roles.should.be.instanceof(Array).and.have.lengthOf(1);
               userInfoRes.body.roles.indexOf('user').should.equal(0);
               userInfoRes.body._id.should.be.equal(String(user._id));
@@ -775,8 +775,8 @@ describe('User CRUD tests', function () {
           }
 
           var userUpdate = {
-            firstName: 'user_update_first',
-            lastName: 'user_update_last',
+            // firstName: 'user_update_first',
+            // lastName: 'user_update_last',
             username: user.username
           };
 
@@ -827,8 +827,8 @@ describe('User CRUD tests', function () {
           }
 
           var userUpdate = {
-            firstName: 'user_update_first',
-            lastName: 'user_update_last',
+            // firstName: 'user_update_first',
+            // lastName: 'user_update_last',
             email: user.email
           };
 
@@ -904,24 +904,24 @@ describe('User CRUD tests', function () {
 
       should.not.exist(err);
 
-      var userUpdate = {
-        firstName: 'user_update_first',
-        lastName: 'user_update_last'
-      };
+      // var userUpdate = {
+      //   firstName: 'user_update_first',
+      //   lastName: 'user_update_last'
+      // };
 
-      agent.put('/api/users')
-        .send(userUpdate)
-        .expect(401)
-        .end(function (userInfoErr, userInfoRes) {
-          if (userInfoErr) {
-            return done(userInfoErr);
-          }
-
-          userInfoRes.body.message.should.equal('User is not signed in');
-
-          // Call the assertion callback
-          return done();
-        });
+      // agent.put('/api/users')
+      //   .send(userUpdate)
+      //   .expect(401)
+      //   .end(function (userInfoErr, userInfoRes) {
+      //     if (userInfoErr) {
+      //       return done(userInfoErr);
+      //     }
+      //
+      //     userInfoRes.body.message.should.equal('User is not signed in');
+      //
+      //     // Call the assertion callback
+      //     return done();
+      //   });
     });
   });
 

@@ -2,16 +2,16 @@
 
 describe('Users E2E Tests:', function () {
   var user1 = {
-    firstName: 'test',
-    lastName: 'user',
+    // firstName: 'test',
+    // lastName: 'user',
     email: 'test.user@meanjs.com',
     username: 'testUser',
     password: 'P@$$w0rd!!'
   };
 
   var user2 = {
-    firstName: 'test',
-    lastName: 'user2',
+    // firstName: 'test',
+    // lastName: 'user2',
     email: 'test.user2@meanjs.com',
     username: 'testUser2',
     password: 'P@$$w0rd!!'
@@ -25,44 +25,44 @@ describe('Users E2E Tests:', function () {
   };
 
   describe('Signup Validation', function () {
-    it('Should report missing first name', function () {
-      browser.get('http://localhost:3001/authentication/signup');
-      // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
-      // Enter Email
-      element(by.model('vm.credentials.email')).sendKeys(user1.email);
-      // Enter Username
-      element(by.model('vm.credentials.username')).sendKeys(user1.username);
-      // Enter Password
-      element(by.model('vm.credentials.password')).sendKeys(user1.password);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // First Name Error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('First name is required.');
-    });
+    // it('Should report missing first name', function () {
+    //   browser.get('http://localhost:3001/authentication/signup');
+    //   // Enter Last Name
+    //   // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+    //   // Enter Email
+    //   element(by.model('vm.credentials.email')).sendKeys(user1.email);
+    //   // Enter Username
+    //   element(by.model('vm.credentials.username')).sendKeys(user1.username);
+    //   // Enter Password
+    //   element(by.model('vm.credentials.password')).sendKeys(user1.password);
+    //   // Click Submit button
+    //   element(by.css('button[type=submit]')).click();
+    //   // First Name Error
+    //   expect(element.all(by.css('.error-text')).get(0).getText()).toBe('First name is required.');
+    // });
 
-    it('Should report missing last name', function () {
-      browser.get('http://localhost:3001/authentication/signup');
-      // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
-      // Enter Email
-      element(by.model('vm.credentials.email')).sendKeys(user1.email);
-      // Enter Username
-      element(by.model('vm.credentials.username')).sendKeys(user1.username);
-      // Enter Password
-      element(by.model('vm.credentials.password')).sendKeys(user1.password);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Last Name Error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Last name is required.');
-    });
+    // it('Should report missing last name', function () {
+    //   browser.get('http://localhost:3001/authentication/signup');
+    //   // Enter First Name
+    //   // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+    //   // Enter Email
+    //   element(by.model('vm.credentials.email')).sendKeys(user1.email);
+    //   // Enter Username
+    //   element(by.model('vm.credentials.username')).sendKeys(user1.username);
+    //   // Enter Password
+    //   element(by.model('vm.credentials.password')).sendKeys(user1.password);
+    //   // Click Submit button
+    //   element(by.css('button[type=submit]')).click();
+    //   // Last Name Error
+    //   expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Last name is required.');
+    // });
 
     it('Should report missing email address', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Username
       element(by.model('vm.credentials.username')).sendKeys(user1.username);
       // Enter Password
@@ -76,9 +76,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid email address - "123"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys('123');
       // Enter Username
@@ -98,9 +98,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid email address - "123@123@123"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys('123@123@123');
       // Enter Username
@@ -116,9 +116,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid username - ".login"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -134,9 +134,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid username - "login."', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -152,9 +152,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid username - "log..in"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -170,9 +170,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid username - "lo"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -188,9 +188,9 @@ describe('Users E2E Tests:', function () {
     it('Should report invalid username - "log$in"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -226,9 +226,9 @@ describe('Users E2E Tests:', function () {
     it('Should report missing username', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Password
@@ -242,9 +242,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with less than 10 characters long - "P@$$w0rd!"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -260,9 +260,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with greater than 128 characters long.', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -278,9 +278,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with more than 3 or more repeating characters - "P@$$w0rd!!!"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -296,9 +296,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with no uppercase letters - "p@$$w0rd!!"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -314,9 +314,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with less than one number - "P@$$word!!"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -332,9 +332,9 @@ describe('Users E2E Tests:', function () {
     it('Should report a password with less than one special character - "Passw0rdss"', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter First Name
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter Last Name
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter Username
@@ -350,9 +350,9 @@ describe('Users E2E Tests:', function () {
     it('Should Successfully register new user', function () {
       browser.get('http://localhost:3001/authentication/signup');
       // Enter FirstName
-      element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
+      // element(by.model('vm.credentials.firstName')).sendKeys(user1.firstName);
       // Enter LastName
-      element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
+      // element(by.model('vm.credentials.lastName')).sendKeys(user1.lastName);
       // Enter Email
       element(by.model('vm.credentials.email')).sendKeys(user1.email);
       // Enter UserName

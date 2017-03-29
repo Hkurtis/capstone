@@ -39,9 +39,9 @@ describe('Article CRUD tests', function () {
 
     // Create a new user
     user = new User({
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      //firstName: 'Full',
+      //lastName: 'Name',
+      displayName: "PugetSound Student Options",
       email: 'test@test.com',
       username: credentials.usernameOrEmail,
       password: credentials.password,
@@ -222,9 +222,9 @@ describe('Article CRUD tests', function () {
 
     // Create orphan user
     var _orphan = new User({
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      //firstName: 'Full',
+      //lastName: 'Name',
+      displayName: "PugetSound Student Options",
       email: 'orphan@test.com',
       username: _creds.usernameOrEmail,
       password: _creds.password,
@@ -328,9 +328,9 @@ describe('Article CRUD tests', function () {
 
     // Create user that will create the Article
     var _articleOwner = new User({
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      //firstName: 'Full',
+      //lastName: 'Name',
+      displayName: "PugetSound Student Options",
       email: 'temp@test.com',
       username: _creds.usernameOrEmail,
       password: _creds.password,

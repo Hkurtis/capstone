@@ -38,9 +38,9 @@ describe('Article Admin CRUD tests', function () {
 
     // Create a new user
     user = new User({
-      firstName: 'Full',
-      lastName: 'Name',
-      displayName: 'Full Name',
+      //firstName: 'Full',
+      //lastName: 'Name',
+      displayName: "PugetSound Student User",
       email: 'test@test.com',
       roles: ['user', 'admin'],
       username: credentials.usernameOrEmail,
