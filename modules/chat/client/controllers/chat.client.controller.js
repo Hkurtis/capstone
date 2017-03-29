@@ -13,10 +13,12 @@
     vm.messages = [];
     vm.messageText = '';
     vm.sendMessage = sendMessage;
+    vm.add = add;
 
     init();
 
     function init() {
+    
       // If user is not signed in then redirect back home
       if (!Authentication.user) {
         $state.go('home');
@@ -37,6 +39,14 @@
         Socket.removeListener('chatMessage');
       });
     }
+    function add(){
+      var msg = {
+        text: vm.messageText
+      }
+      Socket.emit('chatMessage', msg);
+      console.log("Message: "+vm.messageText);
+      vm.messageText = '';
+    };
     // eventually this will save messages to the database
     // var msgSchema = new mongoose.Schema({
     //   msg: String,
@@ -51,7 +61,7 @@
 
       // Emit a 'chatMessage' message event
       Socket.emit('chatMessage', message);
-
+      console.log("text: "+ vm.messageText);
       // Clear the message text
       vm.messageText = '';
     }

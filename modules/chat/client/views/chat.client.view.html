@@ -1,4 +1,86 @@
-<!-- The chat view -->
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+      * { margin: 30; padding: 30; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 90%; }
+      form input { border: 0; padding: 15px; width: 85%; margin-right: 0%; }
+      form button { width: 100%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+    </style>
+</head>
+<body> 
+<!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
+<script src="/meanjs/config/lib/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <ul class = "list-unstyled" id="messages">
+  <script>
+    socket.on('chatMessage', function(data) {
+      console.log(data);
+    var list = document.getElementById("messages");
+    var element = document.createElement(data);
+    list.appendChild(document.createTextNode("test"));
+    element.appendChild(list);
+  });
+  </script>
+    <!-- print all messages onto the screen -->
+    <li class="col-xs-12  col-md-12 chat-message" ng-repeat="message in vm.messages">
+      <div class="pull-left chat-message-details">
+        <strong ng-bind="message.username"></strong>
+        <br>
+        <span ng-bind="message.text"></span>
+      </div>
+    </li>
+  </ul>
+
+  <div ng-controller="ChatController">
+    <form ng-submit="vm.sendMessage()">
+      <input type="text" name="messageText" class="form-control" ng-model="vm.messageText"/>
+      <button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>
+    </form>
+  </div> 
+  
+  </body>
+</section>
+</body>
+</html>
+  <!-- how to list messages
+<ul class="list-unstyled">
+    List all messages
+    <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
+      <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
+      <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
+      <div class="pull-left chat-message-details">
+        <strong ng-bind="message.username"></strong>
+        <br>
+        <span ng-bind="message.text"></span>
+      </div>
+    </li>
+  </ul>
+  -->
+  <!--
+$(document).ready(function(){
+  var socket = io();
+
+  document.querySelector('form')
+  .addEventListener('submit', function(data){
+    socket.emit('chat message', document.querySelector('#m').value);
+    document.querySelector('#m').value = '';
+    data.preventDefault();
+  });
+
+  // $('form').submit(function(){
+  //   socket.emit('chat message', $('#m').val());
+  //   $('#m'.val(''));
+  //   return false;
+  // });
+  socket.on('chat message', function(data){
+    $('#messages').append($('<li>').text(data));
+  });
+});
+</script> -->
+
+<!-- The chat view 
 <section class="container">
   <div class="page-header">
     <h1>
@@ -192,9 +274,10 @@
 
     </script>
     </h2>
-  </div>
+  </div> 
+  -->
   <!-- The message form -->
-  <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
+<!--   <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
     <fieldset class="row">
       <div class="input-group">
         <input type="text" id="messageText" name="messageText" class="form-control" ng-model="vm.messageText" placeholder="Enter new message" autofocus>
@@ -204,9 +287,9 @@
       </div>
     </fieldset>
   </form>
-  <ul class="list-unstyled">
+  <ul class="list-unstyled"> -->
     <!-- List all messages -->
-    <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
+   <!--  <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
       <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
       <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
       <div class="pull-left chat-message-details">
@@ -215,19 +298,15 @@
         <span ng-bind="message.text"></span>
       </div>
     </li>
-  </ul>
+  </ul> -->
 
 
-
-</section>
-
-
-<!-- //The chat view 
+<!--//The chat view 
 <section class="container">
   <div class="page-header">
     <h1>Topic: </h1>
   </div>
-  <!The message form -
+  //The message form 
   <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="vm.sendMessage();">
     <fieldset class="row">
       <div class="input-group">
@@ -239,7 +318,7 @@
     </fieldset>
   </form>
   <ul class="list-unstyled">
-    <! List all messages 
+    List all messages
     <li class="col-xs-12 col-md-offset-4 col-md-4 chat-message" ng-repeat="message in vm.messages">
       <small class="pull-right text-muted" ng-bind="message.created | date:'mediumTime'"></small>
       <img ng-src="/{{message.profileImageURL}}" alt="{{message.username}}" class="pull-left chat-profile-image" />
@@ -250,4 +329,4 @@
       </div>
     </li>
   </ul>
-</section>
+</section> -->

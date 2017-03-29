@@ -137,50 +137,62 @@ module.exports = function (app, db) {
   };
 
   // here is the rough algorithm to enqueue everyone
+  // // multi queue method
+  // var nonInterestedQ = [];// general queue for people with no interests
+  // var interests = [];// populate with interests
+  // var q = [];
+  // var tmp = [];// tmp queue 
+  // var maxUsers = 250;
+  // var created = false;
+  // var queueScheduler = function(socket, interest){
+  //   // if there is no interests 
+  //   if(interest == null){// if there is no interests
+  //     nonInterestedQ.push(socket);// add user to generic queue
+  //   }
+  //   if(created == false){
+  //     for(i = 0; i < maxUsers; i++ ){// create all queues only once
+  //        q = interest[i];// create a queue for every interest;
+  //     }
+  //   }
+  //       created = true;
+  //       for(i = 0; i < interests.length(); i++){
+  //         tmp = interests[i];
+  //         for (j = 0; j < tmp.length();j++){// check each spot in the given queue 
+  //           if(tmp[j] != socket.id){// if the user is not within the queue at the given queue;
+  //             interests[i].push(socket); //add them to the queue 
+  //           }
+  //         }
+  //         tmp = [];// reset tmp
+  //     }
+  // };
+
+ // everyone goes in one queue method
   var nonInterestedQ = [];// general queue for people with no interests
-  var interests = [];// populate with interests
-  var q = [];
-  var tmp = [];// tmp queue 
   var maxUsers = 250;
   var created = false;
-  var queueScheduler = function(socket, interest){
-    // if there is no interests 
-    if(interest == null){// if there is no interests
-      nonInterestedQ.push(socket);// add user to generic queue
-    }
+  var queueScheduler = function(socket){
     if(created == false){
-      for(i = 0; i < maxUsers; i++ ){// create all queues only once
-         q = interest[i];// create a queue for every interest;
-      }
+      nonInterestedQ.push(socket.id);
     }
-        created = true;
-        for(i = 0; i < interests.length(); i++){
-          tmp = interests[i];
-          for (j = 0; j < tmp.length();j++){// check each spot in the given queue 
-            if(tmp[j] != socket.id){// if the user is not within the queue at the given queue;
-              interests[i].push(socket); //add them to the queue 
-            }
-          }
-          tmp = [];// reset tmp
-      }
-  }
+    created = true;
+  };
+
   var tmp = [];
   var queue = [];
   // function to remove users from all queues they are a part of
   // addition to the queue scheduler function 
-  var removeFromQueues = function(socket){
-    queue = interests;
+  var removeFromQueue = function(socket){
+    queue = nonInterestedQ;
     // check every queue to see if the socket is present 
-    for(i = 0; i < interests.length(); i++){
+    for(i = 0; i < queue.length(); i++){
       tmp = queue[i];
-      for(j = 0; j < tmp.length(); j++){
         if(tmp[j] == socket.id){
           tmp.pop(socket.id);
         }
-      }
-      tmp = [];
+      tmp = [];// resets the tmp array 
+      queue = []; // resets the queue array 
     }
-  }
+  };
 
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
@@ -200,7 +212,8 @@ module.exports = function (app, db) {
     });
 
     // when a user sends a message they will broadcast it to the specific room
-    socket.on('message', function(data){
+    socket.on('chat message', function(data){
+      console.log("message: " +data);
       var room = rooms[socket.id];
       socket.broadcast.to(room).emit('message', data);
     });
@@ -210,7 +223,8 @@ module.exports = function (app, db) {
       var room = rooms[socket.id];
       socket.broadcast.to(room).emit('Chat ending');
       // splits the room in two based on the # included earlier
-      var otherID = room.split('#');  
+      var delim = '#';
+      var otherID = room.split(delim);  
       // sorts the id's of the socket so that it doenst get paired with the same person again
       otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
       // add both users back on the queue to chat again
