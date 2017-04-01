@@ -1,7 +1,11 @@
 'use strict';
 var connected = false;
 var username = 'Dan';
-var room =''; // blank at first 
+var room =''; // blank at first
+var path = require('path'),
+  mongoose = require('mongoose'),
+  Message = mongoose.model('Message'),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 // var pairing = require('../../config/lib/matchUsers');
 
 module.exports = function (io, socket) {
@@ -21,6 +25,23 @@ module.exports = function (io, socket) {
     message.created = Date.now();
     // message.profileImageURL = socket.request.user.profileImageURL;
     // message.username = socket.request.user.username;
+
+    //save message to database of messages - cannot pass without saving
+    var thisMessage = new Message({
+      timestamp: message.created,
+      user: socket.id,
+      message: message.text,
+      room: room
+    });
+    thisMessage.save(function (err) {
+      if (err) {
+        return io.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      //console.log('saved message' + message); //check for is saving message
+    });
+
     // Emit the 'chatMessage' event
     io.emit('chatMessage', message);
   });
@@ -62,7 +83,7 @@ module.exports = function (io, socket) {
       socket.leave(room);
       room = ''; // blank out room
     }
-  }
+  };
   // hunter added code above
 
   // commented out disconnect function to see what happens when new one is written
