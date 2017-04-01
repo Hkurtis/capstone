@@ -1,10 +1,11 @@
 (function () {
   'use strict';
+  //var matchUsers = require('../../lib/matchUsers');
 
   angular
     .module('chat')
     .controller('ChatController', ChatController);
-
+     
   ChatController.$inject = ['$scope', '$state', 'Authentication', 'Socket'];
 
   function ChatController($scope, $state, Authentication, Socket) {
@@ -18,7 +19,7 @@
     init();
 
     function init() {
-    
+      //matchUsers.pairLoneUsers(Socket.id);
       // If user is not signed in then redirect back home
       if (!Authentication.user) {
         $state.go('home');
@@ -58,7 +59,6 @@
       var message = {
         text: vm.messageText
       };
-
       // Emit a 'chatMessage' message event
       Socket.emit('chatMessage', message);
       console.log("text: "+ vm.messageText);

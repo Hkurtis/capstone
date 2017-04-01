@@ -1,14 +1,14 @@
-(function () {
-  'use strict';
+// (function () {
+//   'use strict';
 
-  angular
-    .module('core')
-    .controller('ConsentController', ConsentController);
+//   angular
+//     .module('core')
+//     .controller('ConsentController', ConsentController);
 
-  function ConsentController() {
-    var vm = this;
+//   function ConsentController() {
+//     var vm = this;
     
 
   
-  }
-}
+//   };
+// }

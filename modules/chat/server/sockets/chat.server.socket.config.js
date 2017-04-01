@@ -2,23 +2,25 @@
 var connected = false;
 var username = 'Dan';
 var room =''; // blank at first 
+// var pairing = require('../../config/lib/matchUsers');
+
 module.exports = function (io, socket) {
   // Emit the status event when a new socket client is connected
-
   io.emit('chatMessage', {
+    //pairing.pairLongUsers(socket); // potentially pair users?
     type: 'status',
-    text: 'Is now connected',
+    text: 'User now connected',
     created: Date.now(),
-    profileImageURL: socket.request.user.profileImageURL,
-    username: socket.request.user.username
+    profileImageURL: socket.request.user.profileImageURL
+    // username: socket.request.user.username
   });
 
   // Send a chat messages to all connected sockets when a message is received
   socket.on('chatMessage', function (message) {
     message.type = 'message';
     message.created = Date.now();
-    message.profileImageURL = socket.request.user.profileImageURL;
-    message.username = socket.request.user.username;
+    // message.profileImageURL = socket.request.user.profileImageURL;
+    // message.username = socket.request.user.username;
     // Emit the 'chatMessage' event
     io.emit('chatMessage', message);
   });
@@ -41,9 +43,9 @@ module.exports = function (io, socket) {
     room = ''; // blank out room again
   });
   // disconnect function
-  socket.on('disconnect', function(data){
-    console.log('connection is bad or browser issue');
-  });
+  // socket.on('disconnect', function(data){
+  //   console.log('connection is bad or browser issue');
+  // });
   // function for sending a message
   var sendMsg = function(msg){
     // if a user is connected emit the message to the room
@@ -64,14 +66,15 @@ module.exports = function (io, socket) {
   // hunter added code above
 
   // commented out disconnect function to see what happens when new one is written
-  // Emit the status event when a socket client is disconnected
-  // socket.on('disconnect', function () {
-  //   io.emit('chatMessage', {
-  //     type: 'status',
-  //     text: 'disconnected',
-  //     created: Date.now(),
-  //     profileImageURL: socket.request.user.profileImageURL,
-  //     username: socket.request.user.username
-  //   });
-  // });
+  //Emit the status event when a socket client is disconnected
+  socket.on('disconnect', function () {
+
+    io.emit('chatMessage', {
+      type: 'status',
+      text: 'disconnected',
+      created: Date.now(),
+      profileImageURL: socket.request.user.profileImageURL,
+      username: socket.request.user.username
+    });
+  });
 };

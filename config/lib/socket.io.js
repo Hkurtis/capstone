@@ -10,7 +10,8 @@ var config = require('../config'),
   passport = require('passport'),
   socketio = require('socket.io'),
   session = require('express-session'),
-  MongoStore = require('connect-mongo')(session);
+  MongoStore = require('connect-mongo')(session),
+  matcher = require('../../config/lib/matchUsers');
 
 // Define the Socket.io configuration method
 module.exports = function (app, db) {
@@ -77,6 +78,7 @@ module.exports = function (app, db) {
 
   // Intercept Socket.io's handshake request
   io.use(function (socket, next) {
+    //matcher.pairLoneUsers(socket);
     // Use the 'cookie-parser' module to parse the request cookies
     cookieParser(config.sessionSecret)(socket.request, {}, function (err) {
       // Get the session id from the request cookies
@@ -107,130 +109,43 @@ module.exports = function (app, db) {
   });
 
 // this code added by hunter
-// one queue per topic, add users to all possible topic queues
-// creating a pairing function for users based on a queue, hunter's somewhat fix to solving the pairing issue
-// based on example found within stackoverflow
-  var queue = [];
-  var rooms = {};
-  var uNames = {};
-  var allUsers = {};
-
-  var pairLoneUsers = function(socket){
-
-    if(queue){
-      var other = queue.pop(); // pops someone off of the queue if there is at least one user in it
-      var room = socket.id+'#'+other.id; // makes a room based on the two id's of the users
-
-      other.join(room); // makes the other person join the room
-      socket.join(room); //puts the user into the room
-      // register the rooms to their names
-      rooms[other.id] = room;
-      rooms[socket.id] = room;
-      // emit the names of those within the chat 
-      other.emit('chat open', { 'name': uNames[socket.id], 'room': room } );
-      socket.emit('chat open', { 'name': uNames[other.id], 'room': room});
-    }else{
-      // if nobody is in the queue, add someone 
-      // will be popped later to populate the place
-      queue.push(socket);
-    }
-  };
-
-  // here is the rough algorithm to enqueue everyone
-  // // multi queue method
-  // var nonInterestedQ = [];// general queue for people with no interests
-  // var interests = [];// populate with interests
-  // var q = [];
-  // var tmp = [];// tmp queue 
-  // var maxUsers = 250;
-  // var created = false;
-  // var queueScheduler = function(socket, interest){
-  //   // if there is no interests 
-  //   if(interest == null){// if there is no interests
-  //     nonInterestedQ.push(socket);// add user to generic queue
-  //   }
-  //   if(created == false){
-  //     for(i = 0; i < maxUsers; i++ ){// create all queues only once
-  //        q = interest[i];// create a queue for every interest;
-  //     }
-  //   }
-  //       created = true;
-  //       for(i = 0; i < interests.length(); i++){
-  //         tmp = interests[i];
-  //         for (j = 0; j < tmp.length();j++){// check each spot in the given queue 
-  //           if(tmp[j] != socket.id){// if the user is not within the queue at the given queue;
-  //             interests[i].push(socket); //add them to the queue 
-  //           }
-  //         }
-  //         tmp = [];// reset tmp
-  //     }
-  // };
-
- // everyone goes in one queue method
-  var nonInterestedQ = [];// general queue for people with no interests
-  var maxUsers = 250;
-  var created = false;
-  var queueScheduler = function(socket){
-    if(created == false){
-      nonInterestedQ.push(socket.id);
-    }
-    created = true;
-  };
-
-  var tmp = [];
-  var queue = [];
-  // function to remove users from all queues they are a part of
-  // addition to the queue scheduler function 
-  var removeFromQueue = function(socket){
-    queue = nonInterestedQ;
-    // check every queue to see if the socket is present 
-    for(i = 0; i < queue.length(); i++){
-      tmp = queue[i];
-        if(tmp[j] == socket.id){
-          tmp.pop(socket.id);
-        }
-      tmp = [];// resets the tmp array 
-      queue = []; // resets the queue array 
-    }
-  };
-
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
-    console.log('User: ' + socket.id + 'connected'); // print that someone connected
+    console.log('User: ' + socket.id + ' connected'); // print that someone connected
 
     // connecting to a room
-    socket.on('login', function(data){
-      // populate username arrays accordingly 
-      uNames[socket.id] = data.username; 
-      allUsers[socket.id] = socket;
-      // once users login blanket add them to all queues 
-      // constantly poll the queues to see if there are more than 2 free people 
-      // then pair them 
+    // socket.on('login', function(data){
+    //   // populate username arrays accordingly 
+    //   uNames[socket.id] = data.username; 
+    //   allUsers[socket.id] = socket;
+    //   // once users login blanket add them to all queues 
+    //   // constantly poll the queues to see if there are more than 2 free people 
+    //   // then pair them 
 
-      // pair users based on the socket
-      pairLoneUsers(socket);
-    });
+    //   // pair users based on the socket
+    //   pairLoneUsers(socket);
+    // });
 
     // when a user sends a message they will broadcast it to the specific room
-    socket.on('chat message', function(data){
-      console.log("message: " +data);
-      var room = rooms[socket.id];
-      socket.broadcast.to(room).emit('message', data);
-    });
+    // socket.on('chatMessage', function(data){
+    //   console.log("message: " + data);
+    //   var room = rooms[socket.id];
+    //   socket.broadcast.to(room).emit('message', data);
+    // });
 
     // leaving a room
-    socket.on('logout', function(data){
-      var room = rooms[socket.id];
-      socket.broadcast.to(room).emit('Chat ending');
-      // splits the room in two based on the # included earlier
-      var delim = '#';
-      var otherID = room.split(delim);  
-      // sorts the id's of the socket so that it doenst get paired with the same person again
-      otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
-      // add both users back on the queue to chat again
-      pairLoneUsers(allUsers[otherID]);
-      pairLoneUsers(socket);
-    });
+    // socket.on('logout', function(data){
+    //   var room = rooms[socket.id];
+    //   socket.broadcast.to(room).emit('Chat ending');
+    //   // splits the room in two based on the # included earlier
+    //   var delim = '#';
+    //   var otherID = room.split(delim);  
+    //   // sorts the id's of the socket so that it doenst get paired with the same person again
+    //   otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
+    //   // add both users back on the queue to chat again
+    //   pairLoneUsers(allUsers[otherID]);
+    //   pairLoneUsers(socket);
+    // });
 
     // disconnecting from a room
     // essentially the same as the logout function, but only if one of the users decides to leave

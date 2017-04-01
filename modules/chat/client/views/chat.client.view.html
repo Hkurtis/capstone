@@ -14,7 +14,7 @@
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <ul class = "list-unstyled" id="messages">
-  <script>
+  <!-- <script>
     socket.on('chatMessage', function(data) {
       console.log(data);
     var list = document.getElementById("messages");
@@ -22,7 +22,7 @@
     list.appendChild(document.createTextNode("test"));
     element.appendChild(list);
   });
-  </script>
+  </script> -->
     <!-- print all messages onto the screen -->
     <li class="col-xs-12  col-md-12 chat-message" ng-repeat="message in vm.messages">
       <div class="pull-left chat-message-details">
