@@ -3,8 +3,12 @@ var connected = false;
 var username = 'Dan';
 var room =''; // blank at first 
 // var pairing = require('../../config/lib/matchUsers');
-
+var activeUsers = {};
+var initTime = new Date();// gets start time
+var currTime;
+var endTime = 1;// end time of chat 
 module.exports = function (io, socket) {
+  activeUsers[socket.id] = socket;// adds the user to a active users list
   // Emit the status event when a new socket client is connected
   io.emit('chatMessage', {
     //pairing.pairLongUsers(socket); // potentially pair users?
@@ -68,7 +72,8 @@ module.exports = function (io, socket) {
   // commented out disconnect function to see what happens when new one is written
   //Emit the status event when a socket client is disconnected
   socket.on('disconnect', function () {
-
+    
+    console.log(endTime);
     io.emit('chatMessage', {
       type: 'status',
       text: 'disconnected',

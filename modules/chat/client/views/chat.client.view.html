@@ -9,20 +9,12 @@
       form button { width: 100%; background: rgb(130, 224, 255); border: none; padding: 10px; }
     </style>
 </head>
-<body> 
+<body id = "chatRoom"> 
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <ul class = "list-unstyled" id="messages">
-  <!-- <script>
-    socket.on('chatMessage', function(data) {
-      console.log(data);
-    var list = document.getElementById("messages");
-    var element = document.createElement(data);
-    list.appendChild(document.createTextNode("test"));
-    element.appendChild(list);
-  });
-  </script> -->
+   
     <!-- print all messages onto the screen -->
     <li class="col-xs-12  col-md-12 chat-message" ng-repeat="message in vm.messages">
       <div class="pull-left chat-message-details">
@@ -32,11 +24,12 @@
       </div>
     </li>
   </ul>
-
   <div ng-controller="ChatController">
     <form ng-submit="vm.sendMessage()">
       <input type="text" name="messageText" class="form-control" ng-model="vm.messageText"/>
-      <button type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Submit</button>
+      <!-- the onclick function sets an interval that times the chat for 10 minutes, it repeats as long as users want, only occurs once however-->
+      <button onclick = "setTimeout(function(){ alert('10 minutes are up but you may keep chatting!') }, 600000);" type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Send Message</button>
+      
     </form>
   </div> 
   
