@@ -8,6 +8,25 @@
       form input { border: 0; padding: 15px; width: 85%; margin-right: 0%; }
       form button { width: 100%; background: rgb(130, 224, 255); border: none; padding: 10px; }
     </style>
+<!--Listing the topic and prompt at the top -->
+<!--Need specific login info here to connect to database -->
+  <?php
+      $db = mysqli_connect('heroku','', '');
+    ?>
+    <h1> <!--Selecting and printing the general topic -->
+      <?php
+        $query1 = "SELECT name from `Topics` ORDER BY RAND() LIMIT 1;";
+        $result1 = mysqli_query($db, $query1);
+        echo $result1;
+      ?>
+    </h1> 
+    <h2> <!-- Selecting and printing the prompt -->
+      <?php
+          $query2 = "SELECT prompt from `Topics` WHERE name=$query1 ORDER BY RAND() LIMIT 1;";
+          $result2 = mysqi_query($db, $query2);
+          echo $result2;
+      ?>
+    </h2> 
 </head>
 <body id = "chatRoom"> 
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
