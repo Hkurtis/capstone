@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="username">Username: Use your email</label>
+          <label for="username">Username: Please choose a username which does not include your first, middle or last names or any identifying informataion. </label>
           <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" ng-pattern="vm.usernameRegex" placeholder="Username" lowercase required>
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Username is required.</p>

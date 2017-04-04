@@ -11,7 +11,7 @@ var path = require('path'),
 var activeUsers = {};
 // var initTime = new Date();// gets start time
 // var currTime;
-// var endTime = 1;// end time of chat 
+// var endTime = 1;// end time of chat
 module.exports = function (io, socket) {
   //pairLoneUsers(socket);// start pairing users
   //activeUsers[socket.id] = socket;// adds the user to a active users list
@@ -21,7 +21,7 @@ module.exports = function (io, socket) {
     type: 'status',
     text: 'User now connected',
     created: Date.now(),
-    profileImageURL: socket.request.user.profileImageURL
+    // profileImageURL: socket.request.user.profileImageURL
     // username: socket.request.user.username
   });
 
@@ -100,7 +100,7 @@ module.exports = function (io, socket) {
       type: 'status',
       text: 'disconnected',
       created: Date.now(),
-      profileImageURL: socket.request.user.profileImageURL,
+      // profileImageURL: socket.request.user.profileImageURL,
       username: socket.request.user.username
     });
   });
