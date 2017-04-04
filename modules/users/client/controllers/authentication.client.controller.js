@@ -38,6 +38,9 @@
       UsersService.userSignup(vm.credentials)
         .then(onUserSignupSuccess)
         .catch(onUserSignupError);
+      
+      //Go to consent page after signing up
+      window.location.href="consent-form";
     }
 
     function signin(isValid) {
