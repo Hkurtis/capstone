@@ -6,10 +6,16 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+   <div ng-show="vm.consentpage">
     <a ui-sref="home" class="navbar-brand">Di(AI)logue</a>
+  </div>
+  <div ng-hide="vm.consentpage">
+    <a class="navbar-brand">Di(AI)logue</a>
+  </div>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+      <div ng-show="vm.consentpage">
       <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
 
         <!--Removes the Articles tab from the home page-->
@@ -21,6 +27,7 @@
         </ul>
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
+      </div>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
       <li ui-sref-active="active">
@@ -32,6 +39,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+      <div ng-show="vm.consentpage">
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
             About<span ng-bind="About"></span> <b class="caret"></b>
@@ -45,6 +53,7 @@
           </li>
       </ul>
       </li>
+    </div>
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
