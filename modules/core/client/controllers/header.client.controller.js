@@ -14,6 +14,14 @@
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
+    
+    function consentpage() {
+      if (document.URL.contains("consent-form")) {
+        return false;
+      } else {
+        return true;
+      }
+    }
 
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
