@@ -151,14 +151,16 @@ module.exports = function (app, db) {
 
     // disconnecting from a room
     // essentially the same as the logout function, but only if one of the users decides to leave
-    socket.on('disconnect', function(data){
-      var room = rooms[socket.id];
-      socket.broadcast.to(room).emit('Chat ending');
-      var otherID = room.split('#');
-      otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
+    // made it bare bones for now because it's not working currently 
+    socket.on('disconnect', function(socket){
+      socket.emit('Chat is ending, hope you had a nice chat!');
+      // var room = rooms[socket.id];
+      // socket.broadcast.to(room).emit('Chat ending');
+      // var otherID = room.split('#');
+      // otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
 
-      // only add the other user to the queue as the socket itself disconnects
-      pairLoneUsers(allUsers[otherID]);
+      // // only add the other user to the queue as the socket itself disconnects
+      // pairLoneUsers(allUsers[otherID]);
     });
     // end of code added by hunter
 
