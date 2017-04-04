@@ -6,13 +6,40 @@
   var rooms = {};
   var uNames = {};
   var allUsers = {};
+  var roomName = "";
+  var defaultRoom = "/chat";
+  var s;// socket 
+  // checks if a specific socket 
+  exports.saveSocket = function(socket){
+    s = socket;
+  }
+  exports.inQueue = function(socket){
+    for(var i = 0; i < queue.length; i++){
+      if(queue[i] === socket){
+        console.log(socket+' is in the queue');
+      }
+    }
+  };
+  exports.findRoom = function(){
+    var socket = s;
+    if(rooms[socket.id] != null)
+      return roomName = rooms[socket.id];
+    return defaultRoom;
+  }
+  // function to print out the room that the current socket user is in
+  // primarily used to test if the user actually got placed in a room
+  exports.printRoomName = function(socket){
+    var userRoom = rooms[socket.id];// get the room
+    console.log(userRoom);
+    socket.on(room).emit('You are in room: '+userRoom);// emit this event to the room 
+  }
 
   exports.pairLoneUsers = function(socket){
-
-    if(queue){
-      var other = queue.pop(); // pops someone off of the queue if there is at least one user in it
+    printRoomName(socket);
+    // if the queue isnt empty
+    if(queue.length > 0){
+      var other = queue.shift(); // pops someone off of the queue if there is at least one user in it
       var room = socket.id+'#'+other.id; // makes a room based on the two id's of the users
-
       other.join(room); // makes the other person join the room
       socket.join(room); //puts the user into the room
       // register the rooms to their names
@@ -25,6 +52,7 @@
       // if nobody is in the queue, add someone 
       // will be popped later to populate the place
       queue.push(socket);
+      inQueue(socket);
     }
   };
 

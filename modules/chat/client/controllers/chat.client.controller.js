@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   //var matchUsers = require('../../lib/matchUsers');
-
+  //console.log(matchUsers);
   angular
     .module('chat')
     .controller('ChatController', ChatController);
@@ -66,7 +66,6 @@
       vm.messageText = '';
     }
   }
-  
   // // function to save things?
   // var mongoose = require('mongoose');
   // mongoose.connect('mongodb://localhost/test',function (err){

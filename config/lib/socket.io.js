@@ -78,6 +78,7 @@ module.exports = function (app, db) {
 
   // Intercept Socket.io's handshake request
   io.use(function (socket, next) {
+   // matcher.saveSocket(socket);// saves the socket for other code to use
     //matcher.pairLoneUsers(socket);
     // Use the 'cookie-parser' module to parse the request cookies
     cookieParser(config.sessionSecret)(socket.request, {}, function (err) {
@@ -111,6 +112,7 @@ module.exports = function (app, db) {
 // this code added by hunter
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
+
     console.log('User: ' + socket.id + ' connected'); // print that someone connected
 
     // connecting to a room
@@ -151,7 +153,7 @@ module.exports = function (app, db) {
     // essentially the same as the logout function, but only if one of the users decides to leave
     socket.on('disconnect', function(data){
       var room = rooms[socket.id];
-      socket.broadcast.to(room).emit('Chat end');
+      socket.broadcast.to(room).emit('Chat ending');
       var otherID = room.split('#');
       otherID = otherID[0] === socket.id ? otherID[1] : otherID[0];
 
