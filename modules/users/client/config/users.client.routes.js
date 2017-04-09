@@ -82,6 +82,15 @@
           pageTitle: 'Signin'
         }
       })
+    .state('consent-form', {
+        url: '/authentication/consent-form',
+        templateUrl: '/modules/users/client/views/authentication/consent.view.html',
+        controller: 'ConsentFormController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Consent'
+        }
+      })
       .state('password', {
         abstract: true,
         url: '/password',

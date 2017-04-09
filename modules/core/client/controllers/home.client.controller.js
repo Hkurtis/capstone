@@ -1,12 +1,12 @@
-// (function () {
-//   'use strict';
+ function () {
+   'use strict';
 
-//   angular
-//     .module('core')
-//     .controller('HomeController', HomeController);
+   angular
+     .module('core')
+     .controller('HomeController', HomeController);
 
-//   function HomeController() {
-//     var vm = this;
-//     vm.authentication = Authentication;
-//   }
-// }());
+   function HomeController() {
+     var vm = this;
+     vm.authentication = Authentication;
+   }
+ };
