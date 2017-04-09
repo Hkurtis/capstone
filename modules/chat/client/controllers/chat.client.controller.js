@@ -54,6 +54,7 @@
     //   name: String
     // });
     // Create a controller method for sending messages
+    var socketid = Socket.id;
     function sendMessage() {
       // Create a new message object
       var message = {
@@ -61,6 +62,7 @@
       };
       // Emit a 'chatMessage' message event
       Socket.emit('chatMessage', message);
+      io.to(socketid).emit('message', message);
       console.log("text: "+ vm.messageText);
       // Clear the message text
       vm.messageText = '';

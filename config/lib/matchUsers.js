@@ -11,7 +11,7 @@
   var s;// socket 
   // checks if a specific socket 
   exports.saveSocket = function(socket){
-    s = socket;
+    return socket;
   }
   exports.inQueue = function(socket){
     for(var i = 0; i < queue.length; i++){
@@ -20,8 +20,9 @@
       }
     }
   };
+  
   exports.findRoom = function(){
-    var socket = s;
+    var socket = saveSocket();
     if(rooms[socket.id] != null)
       return roomName = rooms[socket.id];
     return defaultRoom;
@@ -35,9 +36,8 @@
   }
 
   exports.pairLoneUsers = function(socket){
-    printRoomName(socket);
     // if the queue isnt empty
-    if(queue.length > 0){
+    if(queue.length > 1){
       var other = queue.shift(); // pops someone off of the queue if there is at least one user in it
       var room = socket.id+'#'+other.id; // makes a room based on the two id's of the users
       other.join(room); // makes the other person join the room
@@ -45,16 +45,22 @@
       // register the rooms to their names
       rooms[other.id] = room;
       rooms[socket.id] = room;
-      // emit the names of those within the chat 
-      other.emit('chat open', { 'name': uNames[socket.id], 'room': room } );
-      socket.emit('chat open', { 'name': uNames[other.id], 'room': room});
+      // emit the names of those within the chat to the chatroom 
+      socket.to(room).emit('chat open', { 'name': uNames[socket.id], 'room': room } );
+      socket.to(room).emit('chat open', { 'name': uNames[other.id], 'room': room } );
     }else{
       // if nobody is in the queue, add someone 
       // will be popped later to populate the place
       queue.push(socket);
-      inQueue(socket);
+      //inQueue(socket);
+      //printRoomName(socket);
     }
   };
+
+  // develop a logout button
+  // develop a button that allows users to go into a queue
+
+  // below is code that did not work but kept in order to show the creative process 
 
   // here is the rough algorithm to enqueue everyone
   // // multi queue method

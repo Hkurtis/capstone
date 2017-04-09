@@ -112,7 +112,7 @@ module.exports = function (app, db) {
 // this code added by hunter
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
-
+    matcher.pairLoneUsers(socket); // this breaks idk
     console.log('User: ' + socket.id + ' connected'); // print that someone connected
 
     // connecting to a room
