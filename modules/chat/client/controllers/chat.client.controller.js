@@ -7,6 +7,8 @@
     .controller('ChatController', ChatController);
      
   ChatController.$inject = ['$scope', '$state', 'Authentication', 'Socket'];
+  
+  
 
   function ChatController($scope, $state, Authentication, Socket) {
     var vm = this;
@@ -15,6 +17,22 @@
     vm.messageText = '';
     vm.sendMessage = sendMessage;
     vm.add = add;
+    
+    function getquery() {
+      var path = require('path'),
+        mongoose = require('mongoose'),
+        db = mongoose.model('Topics'),
+        errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+
+        var rand = Math.random();
+        var rand2 = Math.random();
+        var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+        var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+
+        document.getElementById("Topic").innerHTML = topic;
+        document.getElementById("Prompt").innterHTML = topic;
+
+    }
 
     init();
 
