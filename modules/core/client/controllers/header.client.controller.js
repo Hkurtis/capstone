@@ -16,7 +16,7 @@
     vm.menu = menuService.getMenu('topbar');
     
     function consentpage() {
-      if (document.pathname()=="consent-page") {
+      if (document.location.pathname()=="consent-page") {
         return false;
       } else {
         return true;
