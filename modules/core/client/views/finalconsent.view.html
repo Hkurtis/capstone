@@ -3,9 +3,10 @@
   <h1><center>Short Survey</center></h1>
   <script>
 function validateForm() {
-    var x = document.forms["finalconsentform"]["q1a"].value;
-    if (x == "") {
-        alert("Name must be filled out");
+    var x = document.forms["finalconsentform"]["q1"].value;
+    var y = document.forms["finalconsentform"]["q2"].value;
+    if (x == "" || y == "") {
+        alert("fields must be filled out");
         return false;
     }
 }
