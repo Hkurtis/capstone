@@ -16,7 +16,7 @@
     vm.menu = menuService.getMenu('topbar');
     
     function consentpage() {
-      if (document.location.pathname()=="consent-page") {
+      if (document.location.href == "https://aqueous-chamber-31392.herokuapp.com/consent-page") {
         return false;
       } else {
         return true;
