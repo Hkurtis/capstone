@@ -10,7 +10,23 @@
     </style>
 <div class="page-header">
     <h1 id="Topic">
-      <script>getquery()</script>
+      <script>
+          function getquery() {
+        var path = require('path'),
+          mongoose = require('mongoose'),
+          db = mongoose.model('Topics'),
+          errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+
+          var rand = Math.random();
+          var rand2 = Math.random();
+          var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+          var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+
+          document.getElementById("Topic").innerHTML = topic;
+          document.getElementById("Prompt").innterHTML = topic;
+
+      }
+        getquery()</script>
     </h1> <!-- Retrieving the topic from the Topics database -->
     <h2 id="Prompt">
       <script>getquery()</script>
