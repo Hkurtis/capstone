@@ -15,7 +15,7 @@
   <h1 id="Topic">Check1</h1>
   <h2 id="Prompt">Check2</h2>
   <script>
-          (function getquery() {
+       function getquery() {
         var path = require('path'),
           mongoose = require('mongoose'),
           db = mongoose.model('Topics'),
@@ -29,7 +29,7 @@
           document.getElementById("Topic").innerHTML = topic;
           document.getElementById("Prompt").innterHTML = prompt;
 
-      })();
+      };
         getquery();
         </script>
   <script>document.getElementById("Prompt").innerHTML = "Check8";
