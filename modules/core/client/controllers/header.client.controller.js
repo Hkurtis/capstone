@@ -16,7 +16,7 @@
     vm.menu = menuService.getMenu('topbar');
     
     function consentpage() {
-      if (document.URL.contains("/consent-form")) {
+      if (document.pathname()=="consent-form") {
         return false;
       } else {
         return true;
