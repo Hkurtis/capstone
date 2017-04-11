@@ -9,9 +9,12 @@
       form button { width: 100%; background: rgb(130, 224, 255); border: none; padding: 10px; }
     </style>
 <div class="page-header">
-  <script>document.getElementById("Prompt").innerHTML = "Check6";</script>
-    <h1 id="Topic">
-      <script>
+  </div>
+</head>
+<body id = "chatRoom"> 
+  <h1 id="Topic"></h1>
+  <h2 id="Prompt"></h2>
+  <script>
           (function getquery() {
         var path = require('path'),
           mongoose = require('mongoose'),
@@ -24,26 +27,12 @@
           var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
 
           document.getElementById("Topic").innerHTML = topic;
-          document.getElementById("Prompt").innterHTML = topic;
+          document.getElementById("Prompt").innterHTML = prompt;
 
       })();
         getquery();
         document.write('<h1>Check1</h1>');</script>
-      Check2
-    </h1> <!-- Retrieving the topic from the Topics database -->
-    <h2 id="Prompt">
-     <script>
-       getquery();
-      document.write('Check3');
-      document.getElementById("Prompt").innerHTML = '<h2>Check4</h2>';</script>
-    Check5  
-  </h2> <!-- Retrieving the subtopic from the topics database -->
-  <script>document.getElementById("Prompt").innerHTML = "Check7";</script>
-  </div>
-</head>
-<body id = "chatRoom"> 
-  <h1 id="Ahhh"></h1>
-  <script>document.getElementById("Ahhh").innerHTML = "Check8";
+  <script>document.getElementById("Prompt").innerHTML = "Check8";
   document.write('Check9');</script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
