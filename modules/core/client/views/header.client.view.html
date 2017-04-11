@@ -8,8 +8,11 @@
     </button>
       <a ui-sref="home" class="navbar-brand">Di(AI)logue</a>
    </div>
-  <div ng-show="vm.consentpage()">
+  <div ng-show="vm.consentpage">
     <h1>Test</h1>
+  </div>
+  <div ng-hide="vm.consentpage">
+    <h2>Test2</h2>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
