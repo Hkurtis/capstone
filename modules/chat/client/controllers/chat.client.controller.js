@@ -1,6 +1,7 @@
+//var matchUsers = require('../../lib/matchUsers');
 (function () {
   'use strict';
-  //var matchUsers = require('../../lib/matchUsers');
+  
   //console.log(matchUsers);
   angular
     .module('chat')
@@ -54,7 +55,7 @@
     //   name: String
     // });
     // Create a controller method for sending messages
-    var socketid = Socket.id;
+    //var partner = matchUsers.getPartner(Socket);
     function sendMessage() {
       // Create a new message object
       var message = {
@@ -62,7 +63,8 @@
       };
       // Emit a 'chatMessage' message event
       Socket.emit('chatMessage', message);
-      io.to(socketid).emit('message', message);
+      Socket.broadcast.to(partner).emit('chatMessage', message);
+
       console.log("text: "+ vm.messageText);
       // Clear the message text
       vm.messageText = '';

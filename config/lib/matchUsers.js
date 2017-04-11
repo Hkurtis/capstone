@@ -32,7 +32,29 @@
   exports.printRoomName = function(socket){
     var userRoom = rooms[socket.id];// get the room
     console.log(userRoom);
-    socket.on(room).emit('You are in room: '+userRoom);// emit this event to the room 
+    socket.on(room).emit('You are in room: ' + userRoom);// emit this event to the room 
+  }
+
+ var other;
+ var chatting = {}; // list of booleans 
+  //data is the array of all users, socket is the user
+  exports.getPartner = function(socket){
+    var vm = this;
+    if(!allUsers.includes(socket.id)){
+        allUsers.push(socket.id);
+        // odd # users case
+        if(allUsers.length % 2 != 0){
+           alert("Sorry there is not enough people to talk to, you have been added to a waiting list, try again soon!"); 
+          }
+        }else if(allUsers % 2 == 0){// even # users case 
+          var person = allUsers.indexOf(allUsers.length);// get last person 
+          var partner = { partner1: socket, partner2: person, chatting: true };
+          vm.save(partner);
+          // somehow notify the system to send messages only to other
+        }
+      }
+      }
+
   }
 
   exports.pairLoneUsers = function(socket){

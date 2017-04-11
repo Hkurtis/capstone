@@ -10,8 +10,8 @@ var config = require('../config'),
   passport = require('passport'),
   socketio = require('socket.io'),
   session = require('express-session'),
-  MongoStore = require('connect-mongo')(session),
-  matcher = require('../../config/lib/matchUsers');
+  MongoStore = require('connect-mongo')(session);
+  //matcher = require('../../config/lib/matchUsers');
 
 // Define the Socket.io configuration method
 module.exports = function (app, db) {
@@ -112,7 +112,7 @@ module.exports = function (app, db) {
 // this code added by hunter
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
-    matcher.pairLoneUsers(socket); // this breaks idk
+   // matcher.pairLoneUsers(socket); // this breaks idk
     console.log('User: ' + socket.id + ' connected'); // print that someone connected
 
     // connecting to a room
