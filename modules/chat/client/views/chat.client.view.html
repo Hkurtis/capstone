@@ -33,7 +33,9 @@
         getquery();
         document.write('<h1>Check1</h1>');</script>
   <script>document.getElementById("Prompt").innerHTML = "Check8";
-  document.write('Check9');</script>
+  document.write('Check9');
+  window.onload = getquery();
+  </script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
