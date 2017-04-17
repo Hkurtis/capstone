@@ -12,8 +12,8 @@
   </div>
 </head>
 <body id = "chatRoom"> 
-  <h1 id="Topic">Check1</h1>
-  <h2 id="Prompt">Check2</h2>
+  <h1 id="Topic"></h1>
+  <h2 id="Prompt"></h2>
   <script type="/text/javascript">
        function getquery() {
         var path = require('path'),
@@ -32,7 +32,6 @@
       };
         getquery();
   document.getElementById("Prompt").innerHTML = "Check8";
-  window.onload = getquery();
   </script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
