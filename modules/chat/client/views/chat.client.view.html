@@ -14,24 +14,20 @@
 <body id = "chatRoom"> 
   <h1 id="Topic">Check 42</h1>
   <h2 id="Prompt"></h2>
-  <script type="/text/javascript">
-       function getquery() {
+    <script >
         var path = require('path'),
           mongoose = require('mongoose'),
           db = mongoose.model('Topics'),
           errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-
           var rand = Math.random();
           var rand2 = Math.random();
           var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
           var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
-
           document.getElementById("Topic").innerHTML = topic;
           document.getElementById("Prompt").innterHTML = prompt;
 
-      };
-        getquery();
-  document.getElementById("Prompt").innerHTML = "Check8";
+
+
   </script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
