@@ -11,20 +11,29 @@
 <div class="page-header">
   </div>
 </head>
-<body id = "chatRoom"> 
-  <h1 id="Topic">Check 42</h1>
+<body id = "chatRoom">
+  <h1 id="Topic">Check 41</h1>
   <h2 id="Prompt"></h2>
-    <script >
+  <p id="try"></p>
+  <script >
+        var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect("", function(err, db)) {
+          if (!err) {
+            console.log("Connected");
+          }
+        }
         var path = require('path'),
-          mongoose = require('mongoose'),
-          db = mongoose.model('Topics'),
-          errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+              mongoose = require('mongoose'),
+              Topics = mongoose.model('Topics'),
+              errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
           var rand = Math.random();
           var rand2 = Math.random();
           var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
           var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
           document.getElementById("Topic").innerHTML = topic;
-          document.getElementById("Prompt").innterHTML = prompt;
+          document.getElementById("Prompt").innerHTML = prompt;
+          var what = "hi";
+          document.getElementById("try").innerHTML(what);
 
 
 
