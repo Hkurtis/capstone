@@ -31,10 +31,11 @@
         }**/
           var rand = Math.random();
           var rand2 = Math.random();
-          var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
-          var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+          //var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+          var topic = db.collection('Topics').find({});
+         // var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
           document.getElementById('Topic').innerHTML = topic;
-          document.getElementById('Prompt').innerHTML = prompt;
+         // document.getElementById('Prompt').innerHTML = prompt;
         
 
 
