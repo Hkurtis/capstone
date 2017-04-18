@@ -19,12 +19,14 @@
   <p id="batman"></p>
    <script >
       var what = "hi";
-          document.getElementById("try").innerHTML = what;
-        //var MongoClient = require('mongodb').MongoClient;
-        //MongoClient.connect("", function(err, db)) {
-          //if (err) {
-           // console.log("problem");
-          //}
+      document.getElementById("try").innerHTML = what;
+      var MongoClient = require('mongodb').MongoClient;
+      MongoClient.connect("mongodb://<dbuser>:<dbpassword>@ds033259.mlab.com:33259/heroku_b1qmgjjr", function(err, db)) {
+      if (err) {
+           console.log("problem");
+      } else if (!err) {
+     console.log("Connected");
+     }
         //}
         //var path = require('path'),
          //     mongoose = require('mongoose'),
