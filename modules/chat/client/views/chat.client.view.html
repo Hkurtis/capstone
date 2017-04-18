@@ -21,24 +21,20 @@
    <script >
       var what = "hi";
       document.getElementById("try").innerHTML = what;
-      var MongoClient = require('mongodb').MongoClient;
+      /**var MongoClient = require('mongodb').MongoClient;
       MongoClient.connect("mongodb://<dbuser>:<dbpassword>@ds033259.mlab.com:33259/heroku_b1qmgjjr", function(err, db)) {
-      if (err) {
-           console.log("problem");
-      } else if (!err) {
-     console.log("Connected");
-     }
-        //}
-        //var path = require('path'),
-         //     mongoose = require('mongoose'),
-          //    Topics = mongoose.model('Topics'),
-           //   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-          //var rand = Math.random();
-          //var rand2 = Math.random();
-          //var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
-          //var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
-          //document.getElementById("Topic").innerHTML = topic;
-          //document.getElementById("Prompt").innerHTML = prompt;
+          if (err) {
+               console.log("problem");
+          } else if (!err) {
+         console.log("Connected");
+       }
+        }**/
+          var rand = Math.random();
+          var rand2 = Math.random();
+          var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+          var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+          document.getElementById("Topic").innerHTML = topic;
+          document.getElementById("Prompt").innerHTML = prompt;
         
 
 
