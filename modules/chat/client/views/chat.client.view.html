@@ -15,9 +15,10 @@
   <h1 id="Topic">Check 40</h1>
   <h2 id="Prompt"></h2>
   <p id="try"></p>
+  <p id = "batman"></p>
   <script >
       var what = "hi";
-          document.getElementById("try").innerHTML(what);
+          document.getElementById("try").innerHTML = what;
         var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect("", function(err, db)) {
           if (!err) {
@@ -38,6 +39,10 @@
 
 
 
+  </script>
+  <script>
+    var who = "nanananananana";
+    document.getElementById("batman").innerHTML = who;
   </script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
