@@ -14,12 +14,12 @@
 <body id = "chatRoom">
   <button>End Chat</button>
   <h1>Check 498</h1>
-  <h1 id="Topic"></h1>
-  <h2 id="Prompt"></h2>
-  <p id="try"></p>
-  <p id="try2"></p>
+  <h1 id='Topic'></h1>
+  <h2 id='Prompt'></h2>
+  <p id='try'></p>
+  <p id='try2'></p>
    <script >
-      var what = "hi";
+      var what = 'hi';
       document.getElementById("try").innerHTML = what;
       /**var MongoClient = require('mongodb').MongoClient;
       MongoClient.connect("mongodb://<dbuser>:<dbpassword>@ds033259.mlab.com:33259/heroku_b1qmgjjr", function(err, db)) {
@@ -33,19 +33,19 @@
           var rand2 = Math.random();
           var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
           var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
-          document.getElementById("Topic").innerHTML = topic;
-          document.getElementById("Prompt").innerHTML = prompt;
+          document.getElementById('Topic').innerHTML = topic;
+          document.getElementById('Prompt').innerHTML = prompt;
         
 
 
 
   </script>
   <script>
-    var who = "trying 2";
-    document.getElementById("try2").innerHTML = who;
+    var who = 'trying 2';
+    document.getElementById('try2').innerHTML = who;
     document.write(who);
   </script>
-  <script>console.log("something");</script>
+  <script>console.log('something');</script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
