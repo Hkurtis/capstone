@@ -21,8 +21,8 @@
           document.getElementById("try").innerHTML = what;
         var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect("", function(err, db)) {
-          if (!err) {
-            console.log("Connected");
+          if (err) {
+            console.log("problem");
           }
         }
         var path = require('path'),
