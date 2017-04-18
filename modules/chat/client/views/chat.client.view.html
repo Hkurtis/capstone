@@ -17,7 +17,35 @@
   <h2 id="Prompt"></h2>
   <p id="try"></p>
   <p id="batman"></p>
-  
+   <script >
+      var what = "hi";
+          document.getElementById("try").innerHTML = what;
+        //var MongoClient = require('mongodb').MongoClient;
+        //MongoClient.connect("", function(err, db)) {
+          //if (err) {
+           // console.log("problem");
+          //}
+        //}
+        //var path = require('path'),
+         //     mongoose = require('mongoose'),
+          //    Topics = mongoose.model('Topics'),
+           //   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+          //var rand = Math.random();
+          //var rand2 = Math.random();
+          //var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+          //var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+          //document.getElementById("Topic").innerHTML = topic;
+          //document.getElementById("Prompt").innerHTML = prompt;
+        
+
+
+
+  </script>
+  <script>
+    var who = "nanananananana";
+    document.getElementById("batman").innerHTML = who;
+    document.write(who);
+  </script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -43,35 +71,7 @@
   
   </body>
   
-  <script >
-      var what = "hi";
-          document.getElementById("try").innerHTML = what;
-        var MongoClient = require('mongodb').MongoClient;
-        MongoClient.connect("", function(err, db)) {
-          if (err) {
-            console.log("problem");
-          }
-        }
-        var path = require('path'),
-              mongoose = require('mongoose'),
-              Topics = mongoose.model('Topics'),
-              errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-          var rand = Math.random();
-          var rand2 = Math.random();
-          var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
-          var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
-          document.getElementById("Topic").innerHTML = topic;
-          document.getElementById("Prompt").innerHTML = prompt;
-        
-
-
-
-  </script>
-  <script>
-    var who = "nanananananana";
-    document.getElementById("batman").innerHTML = who;
-    document.write(who);
-  </script>
+ 
 </html>
 
   <!-- how to list messages
