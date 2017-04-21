@@ -63,6 +63,15 @@
           pageTitle: 'Bad Request'
         }
       })
+    .state('finalconsent', {
+        url: '/final-consent',
+        templateUrl: '/modules/core/client/views/finalconsent.view.html',
+        controller: 'FinalConsentController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'End Survey'
+        }
+      })
       .state('consent-page', {
         url: '/consent-page',
         templateUrl: '/modules/core/client/views/consent.form.view.html',

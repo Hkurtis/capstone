@@ -1,0 +1,27 @@
+<html>
+<head>
+  <h1><center>Short Survey</center></h1>
+  <script>
+function validateForm() {
+    var x = document.forms["finalconsentform"]["q1"].value;
+    var y = document.forms["finalconsentform"]["q2"].value;
+    if (x == "" || y == "") {
+        alert("fields must be filled out");
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+<form name="finalconsentform" onsubmit="return validateForm()" method="post">
+  <Strong>Question 1</Strong>: For the most part, we stayed on topic.
+  <input type="radio" name="q1" value="y">Yes
+  <input type="radio" name="q1" value="n">No
+  <br>
+  <Strong>Question 2</Strong>: It is okay to include this conversation in the dataset.
+  <input type="radio" name="q2" value="y">Yes
+  <input type="radio" name="q2" value="n">No
+  <br><br><input type="submit" value="Submit">
+</form>
+</body>
+</html>

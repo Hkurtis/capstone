@@ -8,27 +8,46 @@
       form input { border: 0; padding: 15px; width: 85%; margin-right: 0%; }
       form button { width: 100%; background: rgb(130, 224, 255); border: none; padding: 10px; }
     </style>
-<!--Listing the topic and prompt at the top -->
-<!--Need specific login info here to connect to database -->
-  <?php
-      $db = mysqli_connect('heroku','', '');
-    ?>
-    <h1> <!--Selecting and printing the general topic -->
-      <?php
-        $query1 = "SELECT name from `Topics` ORDER BY RAND() LIMIT 1;";
-        $result1 = mysqli_query($db, $query1);
-        echo $result1;
-      ?>
-    </h1> 
-    <h2> <!-- Selecting and printing the prompt -->
-      <?php
-          $query2 = "SELECT prompt from `Topics` WHERE name=$query1 ORDER BY RAND() LIMIT 1;";
-          $result2 = mysqi_query($db, $query2);
-          echo $result2;
-      ?>
-    </h2> 
+<div class="page-header">
+  </div>
 </head>
-<body id = "chatRoom"> 
+<body id = "chatRoom">
+  <button>End Chat</button>
+  <h1>Check 498</h1>
+  <h1 id='Topic'></h1>
+  <h2 id='Prompt'></h2>
+  <p id='try'></p>
+  <p id='try2'></p>
+   <script >
+      var what = 'hi';
+      document.getElementById("try").innerHTML = what;
+      /**var MongoClient = require('mongodb').MongoClient;
+      MongoClient.connect("mongodb://<dbuser>:<dbpassword>@ds033259.mlab.com:33259/heroku_b1qmgjjr", function(err, db)) {
+          if (err) {
+               console.log("problem");
+          } else if (!err) {
+         console.log("Connected");
+       }
+        }**/
+          var rand = Math.random();
+          var rand2 = Math.random();
+          //var topic = db.collection('Topics').find({name:1}).limit(-1).skip(rand).next();
+          var topic = db.collection('Topics').find({});
+         // var prompt = db.collection('Topics').find({name: topic}, {prompt:1}).limit(-1).skip(rand2).next();
+          document.getElementById('Topic').innerHTML = topic;
+          document.write(topic);
+         // document.getElementById('Prompt').innerHTML = prompt;
+        
+
+
+
+  </script>
+  <script>
+    var who = 'trying 2';
+    document.getElementById('try2').innerHTML = who;
+    document.write(who);
+  </script>
+  <script>console.log('something');</script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -53,8 +72,8 @@
   </div> 
   
   </body>
-</section>
-</body>
+  
+ 
 </html>
 
   <!-- how to list messages
