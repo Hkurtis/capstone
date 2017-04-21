@@ -113,7 +113,7 @@ module.exports = function (app, db) {
   // Add an event listener to the 'connection' event
   io.on('connection', function(socket) {
    // matcher.pairLoneUsers(socket); // this breaks idk
-    console.log('User: ' + socket.id + ' connected'); // print that someone connected
+   // console.log('User: ' + socket.id + ' connected'); // print that someone connected
 
     // connecting to a room
     // socket.on('login', function(data){
@@ -153,7 +153,8 @@ module.exports = function (app, db) {
     // essentially the same as the logout function, but only if one of the users decides to leave
     // made it bare bones for now because it's not working currently 
     socket.on('disconnect', function(socket){
-      socket.emit('Chat is ending, hope you had a nice chat!');
+      console.log('Disconnect');
+      //socket.emit('message','Chat is ending, hope you had a nice chat!');
       // var room = rooms[socket.id];
       // socket.broadcast.to(room).emit('Chat ending');
       // var otherID = room.split('#');

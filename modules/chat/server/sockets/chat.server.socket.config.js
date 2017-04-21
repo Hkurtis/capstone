@@ -3,24 +3,32 @@ var connected = false;
 var username = 'Dan';
 var room =''; // blank at first
 var path = require('path'),
-  //matcher = require('../../config/lib/matchUsers'),
+  matcher = require('../../../../config/lib/matchUsers'),
   mongoose = require('mongoose'),
   Message = mongoose.model('Message'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 // var pairing = require('../../config/lib/matchUsers');
-var activeUsers = {};
+var activeUsers = [];
+
+
 // var initTime = new Date();// gets start time
 // var currTime;
 // var endTime = 1;// end time of chat
 module.exports = function (io, socket) {
-  //pairLoneUsers(socket);// start pairing users
-  //activeUsers[socket.id] = socket;// adds the user to a active users list
+  // for testing something in a way
+  if(activeUsers.indexOf(socket.id)!=-1){}
+    else{
+   activeUsers.push(socket.id);
+   console.log('There are '+activeUsers.length+' active users online');
+ }
+  // pairLoneUsers(socket);// start pairing users
+  // activeUsers[socket.id] = socket;// adds the user to a active users list
   // Emit the status event when a new socket client is connected
   io.emit('chatMessage', {
-    //pairing.pairLongUsers(socket); // potentially pair users?
+    // pairing.pairLongUsers(socket); // potentially pair users?
     type: 'status',
-    text: 'User now connected',
-    created: Date.now(),
+    text: 'User now connected: ' + socket.id,
+    created: Date.now()
     // profileImageURL: socket.request.user.profileImageURL
     // username: socket.request.user.username
   });
@@ -29,27 +37,44 @@ module.exports = function (io, socket) {
   socket.on('chatMessage', function (message) {
     message.type = 'message';
     message.created = Date.now();
+    //message.username = socket.id;
     // message.profileImageURL = socket.request.user.profileImageURL;
     // message.username = socket.request.user.username;
 
-    //save message to database of messages - cannot pass without saving
+    // save message to database of messages - cannot pass without saving
     var thisMessage = new Message({
       timestamp: message.created,
       user: socket.id,
       message: message.text,
       room: room
     });
+
     thisMessage.save(function (err) {
       if (err) {
         return io.status(422).send({
           message: errorHandler.getErrorMessage(err)
         });
       }
-      //console.log('saved message' + message); //check for is saving message
+      // console.log('saved message' + message); //check for is saving message
     });
 
     // Emit the 'chatMessage' event
-    io.emit('chatMessage', message);
+    // create a person object, used for chatting 
+
+    // io.emit(me);
+    var partner = matcher.getPartner(socket);
+
+    // var person = {
+    //   self: socket.id,
+    //   partner: matcher.getPartner(socket), //get the users partner
+    //   index: socket.id
+    // };
+    // socket.broadcast.to(person.partner).emit('chatMessage', message);
+    var p = socket.id;
+    io.to(p).emit('chatMessage', message);
+    //broadcast this to partner
+    io.to(partner).emit('chatMessage',message);
+    //io.emit('chatMessage', message);//broadcast this message to the correct socket instead
   });
   // hunter added code below
   // socket.on('connect', function(data){
@@ -101,7 +126,7 @@ module.exports = function (io, socket) {
       text: 'disconnected',
       created: Date.now(),
       // profileImageURL: socket.request.user.profileImageURL,
-      username: socket.request.user.username
+      // username: socket.request.user.username
     });
   });
 };

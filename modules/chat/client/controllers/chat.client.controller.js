@@ -62,10 +62,12 @@
         text: vm.messageText
       };
       // Emit a 'chatMessage' message event
-      Socket.emit('chatMessage', message);
-      Socket.broadcast.to(partner).emit('chatMessage', message);
+      Socket.emit('chatMessage', message);// when this sends a chat message it should be broadcasting to their users
+      // not just emitting
+      //Socket.broadcast.to(Socket).emit('chatMessage', message);
+      //Socket.broadcast.to(partner).emit('chatMessage', message);
 
-      console.log("text: "+ vm.messageText);
+      console.log('text: '+ vm.messageText);
       // Clear the message text
       vm.messageText = '';
     }
