@@ -49,11 +49,13 @@
   </script>
   <script>console.log('something');</script>
 <!--Code below based off of Socket.io guide on https://socket.io/get-started/chat/ -->
+  <!-- temporarily take out
 <script src="/meanjs/config/lib/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <ul class = "list-unstyled" id="messages">
    
     <!-- print all messages onto the screen -->
+  <!--
     <li class="col-xs-12  col-md-12 chat-message" ng-repeat="message in vm.messages">
       <div class="pull-left chat-message-details">
         <strong ng-bind="message.username"></strong>
@@ -67,9 +69,9 @@
       <input type="text" name="messageText" class="form-control" ng-model="vm.messageText"/>
       <!-- the onclick function sets an interval that times the chat for 10 minutes, it repeats as long as users want, only occurs once however-->
       <button onclick = "setTimeout(function(){ alert('8 minutes are up but you may keep chatting!') }, 480000);" type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Send Message</button>
-      
+      <!--
     </form>
-  </div> 
+  </div> -->
   
   </body>
   
