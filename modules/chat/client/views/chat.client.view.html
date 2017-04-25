@@ -68,7 +68,7 @@
       <input type="text" name="messageText" class="form-control" ng-model="vm.messageText"/>
       <!-- the onclick function sets an interval that times the chat for 10 minutes, it repeats as long as users want, only occurs once however-->
       <button onclick = "setTimeout(function(){ alert('8 minutes are up but you may keep chatting!') }, 480000);" type="submit" class="btn btn-primary" ng-disabled="!vm.messageText.length">Send Message</button>
-      <button ng-show="setTimeout(function(), 480000);" >End Chat</button>
+      <!--<button ng-show="setTimeout(function(), 480000);" >End Chat</button>-->
     </form>
   </div> 
   
